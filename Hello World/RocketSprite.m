@@ -60,6 +60,7 @@
 - (void)onArrivedAtTarget:(SPEvent*)event
 {
   [self removeFromParent];
+  [self dispatchEvent:[SPEvent eventWithType:ROCKET_ON_TARGET_EVENT]];
 }
 
 @end

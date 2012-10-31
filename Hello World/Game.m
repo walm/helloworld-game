@@ -140,6 +140,8 @@ static float s_centerY = 0.0;
   rocket.x = [Game centerX];
   rocket.y = mGameHeight - 100.0f;
   [rocket setTargetForX:x y:y];
+  [rocket addEventListener:@selector(onRocketTarget:) atObject:self
+                   forType:ROCKET_ON_TARGET_EVENT];
   [mRockets addObject:rocket];
   [self addChild:rocket];
 }
@@ -165,6 +167,14 @@ static float s_centerY = 0.0;
                                                   y:touchPosition.y];
   }
   
+}
+
+- (void)onRocketTarget:(SPEvent*)event
+{
+  RocketSprite *rocket = (RocketSprite*)event.target;
+  [mRockets removeObject:rocket];
+  
+  // TODO: load new rockets
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import "BaseSprite.h"
 
+#define ROCKET_ON_TARGET_EVENT @"rocketOnTarget"
+
 @interface RocketSprite : BaseSprite
 
 @property (nonatomic, assign) int type;
