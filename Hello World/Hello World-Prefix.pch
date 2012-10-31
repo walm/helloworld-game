@@ -15,4 +15,5 @@
   #import "SPOverlayView.h"
   #import "SPResizeEvent.h"
   #import "Media.h"
+  #import "Game.h"
 #endif

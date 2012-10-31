@@ -31,10 +31,17 @@
 		EAADF3B016414242006F573C /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3AF16414242006F573C /* sound.caf */; };
 		EAADF3B416414250006F573C /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3B116414250006F573C /* atlas.png */; };
 		EAADF3B516414250006F573C /* atlas.xml in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3B216414250006F573C /* atlas.xml */; };
-		EAADF3B616414250006F573C /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3B316414250006F573C /* background.jpg */; };
 		EAADF3BA1641425E006F573C /* atlas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3B71641425E006F573C /* atlas@2x.png */; };
 		EAADF3BB1641425E006F573C /* atlas@2x.xml in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3B81641425E006F573C /* atlas@2x.xml */; };
-		EAADF3BC1641425E006F573C /* background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3B91641425E006F573C /* background@2x.jpg */; };
+		EAADF3C616415F23006F573C /* bg-568.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3C416415F23006F573C /* bg-568.png */; };
+		EAADF3C716415F23006F573C /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3C516415F23006F573C /* bg.png */; };
+		EAADF3CB16415F32006F573C /* bg-568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3C816415F32006F573C /* bg-568@2x.png */; };
+		EAADF3CC16415F32006F573C /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3C916415F32006F573C /* bg@2x.png */; };
+		EAADF3CF16416117006F573C /* bg@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3CE16416117006F573C /* bg@2x~ipad.png */; };
+		EAADF3D316416247006F573C /* UFOSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3D216416247006F573C /* UFOSprite.m */; };
+		EAADF3DA16416C27006F573C /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3D916416C27006F573C /* BaseSprite.m */; };
+		EAADF3DD16416D64006F573C /* TitleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3DC16416D64006F573C /* TitleSprite.m */; };
+		EAADF3E016417807006F573C /* RocketSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3DF16417807006F573C /* RocketSprite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,10 +91,21 @@
 		EAADF3AF16414242006F573C /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound.caf; path = media/audio/sound.caf; sourceTree = "<group>"; };
 		EAADF3B116414250006F573C /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = atlas.png; path = media/graphics/1x/atlas.png; sourceTree = "<group>"; };
 		EAADF3B216414250006F573C /* atlas.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = atlas.xml; path = media/graphics/1x/atlas.xml; sourceTree = "<group>"; };
-		EAADF3B316414250006F573C /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = media/graphics/1x/background.jpg; sourceTree = "<group>"; };
 		EAADF3B71641425E006F573C /* atlas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "atlas@2x.png"; path = "media/graphics/2x/atlas@2x.png"; sourceTree = "<group>"; };
 		EAADF3B81641425E006F573C /* atlas@2x.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "atlas@2x.xml"; path = "media/graphics/2x/atlas@2x.xml"; sourceTree = "<group>"; };
-		EAADF3B91641425E006F573C /* background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "background@2x.jpg"; path = "media/graphics/2x/background@2x.jpg"; sourceTree = "<group>"; };
+		EAADF3C416415F23006F573C /* bg-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg-568.png"; path = "media/graphics/1x/bg-568.png"; sourceTree = "<group>"; };
+		EAADF3C516415F23006F573C /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = media/graphics/1x/bg.png; sourceTree = "<group>"; };
+		EAADF3C816415F32006F573C /* bg-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg-568@2x.png"; path = "media/graphics/2x/bg-568@2x.png"; sourceTree = "<group>"; };
+		EAADF3C916415F32006F573C /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg@2x.png"; path = "media/graphics/2x/bg@2x.png"; sourceTree = "<group>"; };
+		EAADF3CE16416117006F573C /* bg@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg@2x~ipad.png"; path = "media/graphics/2x/bg@2x~ipad.png"; sourceTree = "<group>"; };
+		EAADF3D116416247006F573C /* UFOSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFOSprite.h; sourceTree = "<group>"; };
+		EAADF3D216416247006F573C /* UFOSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFOSprite.m; sourceTree = "<group>"; };
+		EAADF3D816416C27006F573C /* BaseSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSprite.h; sourceTree = "<group>"; };
+		EAADF3D916416C27006F573C /* BaseSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSprite.m; sourceTree = "<group>"; };
+		EAADF3DB16416D64006F573C /* TitleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleSprite.h; sourceTree = "<group>"; };
+		EAADF3DC16416D64006F573C /* TitleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleSprite.m; sourceTree = "<group>"; };
+		EAADF3DE16417807006F573C /* RocketSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketSprite.h; sourceTree = "<group>"; };
+		EAADF3DF16417807006F573C /* RocketSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketSprite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				EAADF3A916413F7F006F573C /* Resources */,
-				EAADF34616413071006F573C /* Hello World */,
+				EAADF34616413071006F573C /* Classes */,
 				EAADF36416413071006F573C /* Hello WorldTests */,
 				EAADF33F16413071006F573C /* Frameworks */,
 				EAADF33D16413071006F573C /* Products */,
@@ -148,7 +166,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EAADF34616413071006F573C /* Hello World */ = {
+		EAADF34616413071006F573C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				EAADF39816413B9B006F573C /* Support */,
@@ -159,6 +177,7 @@
 				EAADF39516413B1C006F573C /* ViewController.m */,
 				EAADF34716413071006F573C /* Supporting Files */,
 			);
+			name = Classes;
 			path = "Hello World";
 			sourceTree = "<group>";
 		};
@@ -206,6 +225,7 @@
 		EAADF39916413BA1006F573C /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				EAADF3D01641621F006F573C /* Sprites */,
 				EAADF39A16413BAC006F573C /* Game.h */,
 				EAADF39B16413BAC006F573C /* Game.m */,
 				EAADF39C16413BAC006F573C /* GameController.h */,
@@ -256,9 +276,10 @@
 		EAADF3AD16413FA9006F573C /* 1x */ = {
 			isa = PBXGroup;
 			children = (
+				EAADF3C416415F23006F573C /* bg-568.png */,
+				EAADF3C516415F23006F573C /* bg.png */,
 				EAADF3B116414250006F573C /* atlas.png */,
 				EAADF3B216414250006F573C /* atlas.xml */,
-				EAADF3B316414250006F573C /* background.jpg */,
 			);
 			name = 1x;
 			sourceTree = "<group>";
@@ -266,11 +287,28 @@
 		EAADF3AE16413FAE006F573C /* 2x */ = {
 			isa = PBXGroup;
 			children = (
+				EAADF3C916415F32006F573C /* bg@2x.png */,
+				EAADF3CE16416117006F573C /* bg@2x~ipad.png */,
+				EAADF3C816415F32006F573C /* bg-568@2x.png */,
 				EAADF3B71641425E006F573C /* atlas@2x.png */,
 				EAADF3B81641425E006F573C /* atlas@2x.xml */,
-				EAADF3B91641425E006F573C /* background@2x.jpg */,
 			);
 			name = 2x;
+			sourceTree = "<group>";
+		};
+		EAADF3D01641621F006F573C /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				EAADF3D816416C27006F573C /* BaseSprite.h */,
+				EAADF3D916416C27006F573C /* BaseSprite.m */,
+				EAADF3D116416247006F573C /* UFOSprite.h */,
+				EAADF3D216416247006F573C /* UFOSprite.m */,
+				EAADF3DB16416D64006F573C /* TitleSprite.h */,
+				EAADF3DC16416D64006F573C /* TitleSprite.m */,
+				EAADF3DE16417807006F573C /* RocketSprite.h */,
+				EAADF3DF16417807006F573C /* RocketSprite.m */,
+			);
+			name = Sprites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,10 +390,13 @@
 				EAADF3B016414242006F573C /* sound.caf in Resources */,
 				EAADF3B416414250006F573C /* atlas.png in Resources */,
 				EAADF3B516414250006F573C /* atlas.xml in Resources */,
-				EAADF3B616414250006F573C /* background.jpg in Resources */,
 				EAADF3BA1641425E006F573C /* atlas@2x.png in Resources */,
 				EAADF3BB1641425E006F573C /* atlas@2x.xml in Resources */,
-				EAADF3BC1641425E006F573C /* background@2x.jpg in Resources */,
+				EAADF3C616415F23006F573C /* bg-568.png in Resources */,
+				EAADF3C716415F23006F573C /* bg.png in Resources */,
+				EAADF3CB16415F32006F573C /* bg-568@2x.png in Resources */,
+				EAADF3CC16415F32006F573C /* bg@2x.png in Resources */,
+				EAADF3CF16416117006F573C /* bg@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +453,10 @@
 				EAADF3A216413BAC006F573C /* Media.m in Sources */,
 				EAADF3A716413BB5006F573C /* SPOverlayView.m in Sources */,
 				EAADF3A816413BB5006F573C /* SPResizeEvent.m in Sources */,
+				EAADF3D316416247006F573C /* UFOSprite.m in Sources */,
+				EAADF3DA16416C27006F573C /* BaseSprite.m in Sources */,
+				EAADF3DD16416D64006F573C /* TitleSprite.m in Sources */,
+				EAADF3E016417807006F573C /* RocketSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +557,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hello World/Hello World-Prefix.pch";
 				INFOPLIST_FILE = "Hello World/Hello World-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -524,6 +570,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hello World/Hello World-Prefix.pch";
 				INFOPLIST_FILE = "Hello World/Hello World-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
