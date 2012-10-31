@@ -13,7 +13,9 @@
 @interface Game () {
   
   TitleSprite *mTitle;
+  BOOL mIsPlaying;
   BOOL mHasRockets;
+  float mBottomLine;
   
   NSMutableArray *mRockets;
   NSMutableArray *mUFOs;
@@ -24,6 +26,7 @@
 - (void)showMenu;
 - (void)startGame;
 - (void)endGame;
+- (void)addUFOs;
 - (void)launchRocketWithTargetAt:(int)x y:(int)y;
 
 @end
@@ -64,6 +67,8 @@ static float s_centerY = 0.0;
     
     s_centerX = mGameWidth/2.0;
     s_centerY = mGameHeight/2.0;
+    
+    mBottomLine = mGameHeight - 100.0f;
     
     [self setup];
     [self showMenu];
@@ -114,11 +119,14 @@ static float s_centerY = 0.0;
 
 - (void)startGame
 {
+  mIsPlaying = YES;
+  mHasRockets = YES;
+  
   mUFOs = [[NSMutableArray alloc] init];
   mRockets = [[NSMutableArray alloc] init];
   
-  mHasRockets = YES;
- 
+  [self addUFOs];
+  
   // activate touch on scene, which trigger rockets launch
   [self addEventListener:@selector(onSceneTouch:) atObject:self
                  forType:SP_EVENT_TYPE_TOUCH];
@@ -126,10 +134,37 @@ static float s_centerY = 0.0;
 
 - (void)endGame
 {
+  mIsPlaying = NO;
+  
   [self removeEventListener:@selector(onSceneTouch:) atObject:self
                     forType:SP_EVENT_TYPE_TOUCH];
+  
+  [mRockets removeAllObjects];
+  [mUFOs removeAllObjects];
+  mRockets = nil;
+  mUFOs = nil;
+  
   // Game over!!
   [self showMenu];
+}
+
+- (void)addUFOs
+{
+  if (!mIsPlaying) return;
+  
+  int xPos = [SPUtils randomIntBetweenMin:20 andMax:mGameWidth-20];
+  
+  UFOSprite *ufo = [UFOSprite ufo];
+  ufo.x = xPos;
+  ufo.y = -10;
+  ufo.scaleX = ufo.scaleY = 0.5f;
+  [self addChild:ufo];
+  
+  [mUFOs addObject:ufo];
+  
+  SPTween *tween = [SPTween tweenWithTarget:ufo time:15.0f];
+  [tween moveToX:xPos y:mBottomLine];
+  [[SPStage mainStage].juggler addObject:tween];
 }
 
 - (void)launchRocketWithTargetAt:(int)x y:(int)y
@@ -138,7 +173,7 @@ static float s_centerY = 0.0;
   
   RocketSprite *rocket = [RocketSprite rocket];
   rocket.x = [Game centerX];
-  rocket.y = mGameHeight - 100.0f;
+  rocket.y = mBottomLine;
   [rocket setTargetForX:x y:y];
   [rocket addEventListener:@selector(onRocketTarget:) atObject:self
                    forType:ROCKET_ON_TARGET_EVENT];
