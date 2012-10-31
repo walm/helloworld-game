@@ -38,4 +38,28 @@
   [self addChild:image];
 }
 
+- (void)setTargetForX:(int)x y:(int)y
+{
+  // point rocket at target
+  self.rotation = SP_D2R(atan2(x-self.x, self.y-y) * 180 / M_PI);
+  self.scaleX = self.scaleY = 0.0;
+  
+  SPTween *tween;
+  
+  tween = [SPTween tweenWithTarget:self time:0.8f transition:SP_TRANSITION_EASE_IN];
+  [tween scaleTo:1.0f];
+  [self.juggler addObject:tween];
+  
+  tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_EASE_IN];
+  [tween moveToX:x y:y];
+  [tween addEventListener:@selector(onArrivedAtTarget:) atObject:self
+                  forType:SP_EVENT_TYPE_TWEEN_COMPLETED];
+  [self.juggler addObject:tween];
+}
+
+- (void)onArrivedAtTarget:(SPEvent*)event
+{
+  [self removeFromParent];
+}
+
 @end

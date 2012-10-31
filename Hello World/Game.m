@@ -5,17 +5,26 @@
 #import "Game.h"
 #import "GameController.h"
 #import "TitleSprite.h"
+#import "RocketSprite.h"
+#import "UFOSprite.h"
 
 // --- private interface ---------------------------------------------------------------------------
 
 @interface Game () {
   
   TitleSprite *mTitle;
+  BOOL mHasRockets;
+  
+  NSMutableArray *mRockets;
+  NSMutableArray *mUFOs;
   
 }
 
 - (void)setup;
-- (void)onResize:(SPResizeEvent *)event;
+- (void)showMenu;
+- (void)startGame;
+- (void)endGame;
+- (void)launchRocketWithTargetAt:(int)x y:(int)y;
 
 @end
 
@@ -87,16 +96,6 @@ static float s_centerY = 0.0;
   background.y = mGameHeight / 2;
   [self addChild:background];
   
-  // The scaffold autorotates the game to all supported device orientations.
-  // Choose the orienations you want to support in the Target Settings ("Summary"-tab).
-  // To update the game content accordingly, listen to the "RESIZE" event; it is dispatched
-  // to all game elements (just like an ENTER_FRAME event).
-  // 
-  // To force the game to start up in landscape, add the key "Initial Interface Orientation" to
-  // the "App-Info.plist" file and choose any landscape orientation.
-  
-  [self addEventListener:@selector(onResize:) atObject:self forType:SP_EVENT_TYPE_RESIZE];
-  
 }
 
 - (void)showMenu
@@ -113,10 +112,36 @@ static float s_centerY = 0.0;
   [[[SPStage mainStage].juggler delayInvocationAtTarget:mTitle byTime:2.0f] fadeIn:nil];
 }
 
-- (void)onResize:(SPResizeEvent *)event
+- (void)startGame
 {
-  NSLog(@"new size: %.0fx%.0f (%@)", event.width, event.height, 
-        event.isPortrait ? @"portrait" : @"landscape");
+  mUFOs = [[NSMutableArray alloc] init];
+  mRockets = [[NSMutableArray alloc] init];
+  
+  mHasRockets = YES;
+ 
+  // activate touch on scene, which trigger rockets launch
+  [self addEventListener:@selector(onSceneTouch:) atObject:self
+                 forType:SP_EVENT_TYPE_TOUCH];
+}
+
+- (void)endGame
+{
+  [self removeEventListener:@selector(onSceneTouch:) atObject:self
+                    forType:SP_EVENT_TYPE_TOUCH];
+  // Game over!!
+  [self showMenu];
+}
+
+- (void)launchRocketWithTargetAt:(int)x y:(int)y
+{
+  NSLog(@"Rocket fire at x:%d y:%d", x, y);
+  
+  RocketSprite *rocket = [RocketSprite rocket];
+  rocket.x = [Game centerX];
+  rocket.y = mGameHeight - 100.0f;
+  [rocket setTargetForX:x y:y];
+  [mRockets addObject:rocket];
+  [self addChild:rocket];
 }
 
 - (void)onTitleTouched:(SPTouchEvent*)event
@@ -124,9 +149,22 @@ static float s_centerY = 0.0;
   [mTitle fadeOut:^{
     [mTitle removeFromParent];
     mTitle = nil;
+
+    [self startGame];
   }];
+}
+
+- (void)onSceneTouch:(SPTouchEvent*)event
+{
+  // TODO: launch rocket at x y pos
+  SPTouch *touchStart = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] anyObject];
+  if (touchStart)
+  {
+    SPPoint *touchPosition = [touchStart locationInSpace:self];
+    if (mHasRockets) [self launchRocketWithTargetAt:touchPosition.x
+                                                  y:touchPosition.y];
+  }
   
-  // TODO: Start game
 }
 
 @end

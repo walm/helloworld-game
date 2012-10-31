@@ -15,4 +15,6 @@
 + (RocketSprite*)rocket;
 + (RocketSprite*)rocketWithType:(int)type;
 
+- (void)setTargetForX:(int)x y:(int)y;
+
 @end

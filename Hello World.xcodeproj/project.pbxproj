@@ -41,6 +41,7 @@
 		EAADF3D316416247006F573C /* UFOSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3D216416247006F573C /* UFOSprite.m */; };
 		EAADF3DA16416C27006F573C /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3D916416C27006F573C /* BaseSprite.m */; };
 		EAADF3DD16416D64006F573C /* TitleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3DC16416D64006F573C /* TitleSprite.m */; };
+		EAADF3E016417807006F573C /* RocketSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3DF16417807006F573C /* RocketSprite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,8 @@
 		EAADF3D916416C27006F573C /* BaseSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSprite.m; sourceTree = "<group>"; };
 		EAADF3DB16416D64006F573C /* TitleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleSprite.h; sourceTree = "<group>"; };
 		EAADF3DC16416D64006F573C /* TitleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleSprite.m; sourceTree = "<group>"; };
+		EAADF3DE16417807006F573C /* RocketSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketSprite.h; sourceTree = "<group>"; };
+		EAADF3DF16417807006F573C /* RocketSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketSprite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +305,8 @@
 				EAADF3D216416247006F573C /* UFOSprite.m */,
 				EAADF3DB16416D64006F573C /* TitleSprite.h */,
 				EAADF3DC16416D64006F573C /* TitleSprite.m */,
+				EAADF3DE16417807006F573C /* RocketSprite.h */,
+				EAADF3DF16417807006F573C /* RocketSprite.m */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -451,6 +456,7 @@
 				EAADF3D316416247006F573C /* UFOSprite.m in Sources */,
 				EAADF3DA16416C27006F573C /* BaseSprite.m in Sources */,
 				EAADF3DD16416D64006F573C /* TitleSprite.m in Sources */,
+				EAADF3E016417807006F573C /* RocketSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
