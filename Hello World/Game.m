@@ -17,10 +17,13 @@
   BOOL mIsPlaying;
   BOOL mHasRockets;
   float mBottomLine;
+  int mLifes;
+  int mLoadedRockters;
+  float mScore;
   
   NSMutableArray *mRockets;
   NSMutableArray *mUFOs;
-  
+  SPSprite *mPlayStage;
 }
 
 - (void)setup;
@@ -104,7 +107,10 @@ static float s_centerY = 0.0;
   background.x = mGameWidth / 2;
   background.y = mGameHeight / 2;
   [self addChild:background];
- 
+
+  mPlayStage = [SPSprite sprite];
+  [self addChild:mPlayStage];
+  
   [self addEventListener:@selector(onEnterFrame:) atObject:self
                  forType:SP_EVENT_TYPE_ENTER_FRAME];
 }
@@ -127,7 +133,12 @@ static float s_centerY = 0.0;
 {
   mIsPlaying = YES;
   mHasRockets = YES;
-  
+  mLoadedRockters = 5;
+  mLifes = 3;
+  mScore = 0.0f;
+
+  // clear stage
+  [mPlayStage removeAllChildren];
   mUFOs = [[NSMutableArray alloc] init];
   mRockets = [[NSMutableArray alloc] init];
   
@@ -149,7 +160,8 @@ static float s_centerY = 0.0;
   [mUFOs removeAllObjects];
   mRockets = nil;
   mUFOs = nil;
-  
+ 
+  [[SPStage mainStage].juggler removeAllObjects];
   // Game over!!
   [self showMenu];
 }
@@ -166,7 +178,7 @@ static float s_centerY = 0.0;
   ufo.scaleX = ufo.scaleY = 0.5f;
   [ufo addEventListener:@selector(onUFOExplode:) atObject:self
                 forType:UFO_EXPLODE_EVENT];
-  [self addChild:ufo];
+  [mPlayStage addChild:ufo];
   
   [mUFOs addObject:ufo];
   
@@ -186,7 +198,7 @@ static float s_centerY = 0.0;
   hit.y = mBottomLine;
   hit.x = x;
   hit.rotation = SP_D2R(180);
-  [self addChild:hit];
+  [mPlayStage addChild:hit];
   [[SPStage mainStage].juggler addObject:hit];
   [hit start];
 }
@@ -202,7 +214,7 @@ static float s_centerY = 0.0;
   [rocket addEventListener:@selector(onRocketExplode:) atObject:self
                    forType:ROCKET_EXPLODE_EVENT];
   [mRockets addObject:rocket];
-  [self addChild:rocket];
+  [mPlayStage addChild:rocket];
 }
 
 - (BOOL)hasCollided:(SPDisplayObject*)object withObject:(SPDisplayObject*)secondObject
@@ -239,6 +251,7 @@ static float s_centerY = 0.0;
       {
         [ufo explode];
         [rocket explode];
+        mScore += 100.0f;
       }
     }
   }
@@ -250,6 +263,8 @@ static float s_centerY = 0.0;
 {
   if (mIsPlaying) {
     [self checkCollisions];
+    
+    // TODO: update score and life
   }
 }
 
@@ -304,8 +319,9 @@ static float s_centerY = 0.0;
 
   [self addHitAtX:(int)ufo.x];
   [ufo explode];
-  
-  // TODO: Game over or lose a life?
+
+  mLifes--;
+  if (mLifes == 0) [self endGame];
 }
 
 @end
