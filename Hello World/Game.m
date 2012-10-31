@@ -13,17 +13,21 @@
 
 @interface Game () {
   
-  TitleSprite *mTitle;
   BOOL mIsPlaying;
-  BOOL mHasRockets;
   float mBottomLine;
   int mLifes;
   int mLoadedRockters;
-  float mScore;
-  
+  long mScore;
+  float mUfoSpeed;
+  float mUfoDelay;
   NSMutableArray *mRockets;
   NSMutableArray *mUFOs;
+  
+  TitleSprite *mTitle;
   SPSprite *mPlayStage;
+  SPTextField *mScoreLabel;
+  SPTextField *mLifeAndRocketsLabel;
+  SPImage *mLifeImage;
 }
 
 - (void)setup;
@@ -34,6 +38,9 @@
 - (void)addHitAtX:(int)x;
 - (void)launchRocketWithTargetAt:(int)x y:(int)y;
 - (void)checkCollisions;
+- (void)updateScore;
+- (void)updateLifeAndRocketCount;
+- (void)speedUpGame;
 - (BOOL)hasCollided:(SPDisplayObject*)object withObject:(SPDisplayObject*)secondObject;
 
 @end
@@ -74,8 +81,12 @@ static float s_centerY = 0.0;
     
     s_centerX = mGameWidth/2.0;
     s_centerY = mGameHeight/2.0;
-    
-    mBottomLine = mGameHeight - 100.0f;
+   
+    if (mGameHeight < 500) {
+      mBottomLine = mGameHeight - 50.0f;
+    } else {
+      mBottomLine = mGameHeight - 100.0f;
+    }
     
     [self setup];
     [self showMenu];
@@ -110,6 +121,26 @@ static float s_centerY = 0.0;
 
   mPlayStage = [SPSprite sprite];
   [self addChild:mPlayStage];
+
+  mScoreLabel = [SPTextField textFieldWithText:@"Score: 0"];
+  mScoreLabel.visible = NO;
+  mScoreLabel.width = 180.0;
+  mScoreLabel.hAlign = SPHAlignLeft;
+  mScoreLabel.color = SP_WHITE;
+  mScoreLabel.fontSize = 20;
+  mScoreLabel.y = mBottomLine + 15.0f;
+  mScoreLabel.x = 10.0f;
+  [self addChild:mScoreLabel];
+
+  mLifeAndRocketsLabel = [SPTextField textFieldWithText:@"Life: 0 Rockets: 0"];
+  mLifeAndRocketsLabel.visible = NO;
+  mLifeAndRocketsLabel.width = 180.0;
+  mLifeAndRocketsLabel.hAlign = SPHAlignRight;
+  mLifeAndRocketsLabel.color = SP_WHITE;
+  mLifeAndRocketsLabel.fontSize = 20;
+  mLifeAndRocketsLabel.y = mScoreLabel.y;
+  mLifeAndRocketsLabel.x = mGameWidth - 195.0f;
+  [self addChild:mLifeAndRocketsLabel];
   
   [self addEventListener:@selector(onEnterFrame:) atObject:self
                  forType:SP_EVENT_TYPE_ENTER_FRAME];
@@ -126,27 +157,34 @@ static float s_centerY = 0.0;
     [mTitle addEventListener:@selector(onTitleTouched:) atObject:self
                      forType:SP_EVENT_TYPE_TOUCH];
   }
-  [[[SPStage mainStage].juggler delayInvocationAtTarget:mTitle byTime:2.0f] fadeIn:nil];
+  [[[SPStage mainStage].juggler delayInvocationAtTarget:mTitle byTime:1.0f] fadeIn:nil];
 }
 
 - (void)startGame
 {
   mIsPlaying = YES;
-  mHasRockets = YES;
-  mLoadedRockters = 5;
+  mUfoDelay = 3.0f;
+  mUfoSpeed = 15.0f;
+  mLoadedRockters = 2;
   mLifes = 3;
-  mScore = 0.0f;
+  mScore = 0;
 
   // clear stage
   [mPlayStage removeAllChildren];
   mUFOs = [[NSMutableArray alloc] init];
   mRockets = [[NSMutableArray alloc] init];
+
+  mScoreLabel.visible = YES;
+  mLifeAndRocketsLabel.visible = YES;
   
+  [self updateLifeAndRocketCount];
   [self addUFOWithContinued:YES];
   
   // activate touch on scene, which trigger rockets launch
   [self addEventListener:@selector(onSceneTouch:) atObject:self
                  forType:SP_EVENT_TYPE_TOUCH];
+  
+  [[[SPStage mainStage].juggler delayInvocationAtTarget:self byTime:15.0f] speedUpGame];
 }
 
 - (void)endGame
@@ -162,6 +200,7 @@ static float s_centerY = 0.0;
   mUFOs = nil;
  
   [[SPStage mainStage].juggler removeAllObjects];
+  
   // Game over!!
   [self showMenu];
 }
@@ -182,14 +221,14 @@ static float s_centerY = 0.0;
   
   [mUFOs addObject:ufo];
   
-  SPTween *tween = [SPTween tweenWithTarget:ufo time:15.0f];
+  SPTween *tween = [SPTween tweenWithTarget:ufo time:mUfoSpeed];
   [tween moveToX:xPos y:mBottomLine];
   [tween addEventListener:@selector(onUFOHit:) atObject:self
                   forType:SP_EVENT_TYPE_TWEEN_COMPLETED];
   [[SPStage mainStage].juggler addObject:tween];
 
   if (continued)
-    [[[SPStage mainStage].juggler delayInvocationAtTarget:self byTime:3.0f] addUFOWithContinued:YES];
+    [[[SPStage mainStage].juggler delayInvocationAtTarget:self byTime:mUfoDelay] addUFOWithContinued:YES];
 }
 
 - (void)addHitAtX:(int)x
@@ -205,6 +244,8 @@ static float s_centerY = 0.0;
 
 - (void)launchRocketWithTargetAt:(int)x y:(int)y
 {
+  if (mLoadedRockters <= 0) return;
+  
   RocketSprite *rocket = [RocketSprite rocket];
   rocket.x = [Game centerX];
   rocket.y = mBottomLine;
@@ -215,6 +256,9 @@ static float s_centerY = 0.0;
                    forType:ROCKET_EXPLODE_EVENT];
   [mRockets addObject:rocket];
   [mPlayStage addChild:rocket];
+  
+  mLoadedRockters--;
+  [self updateLifeAndRocketCount];
 }
 
 - (BOOL)hasCollided:(SPDisplayObject*)object withObject:(SPDisplayObject*)secondObject
@@ -251,10 +295,35 @@ static float s_centerY = 0.0;
       {
         [ufo explode];
         [rocket explode];
-        mScore += 100.0f;
+        mScore += 100;
+        [self updateScore];
       }
     }
   }
+}
+
+- (void)speedUpGame
+{
+  if (!mIsPlaying) return;
+  
+  mUfoSpeed -= 1.0f;
+  mUfoDelay -= 0.2f;
+
+  // maximum speed and delay
+  if (mUfoSpeed < 5.0f) mUfoSpeed = 5.0f;
+  if (mUfoDelay < 1.0f) mUfoDelay = 1.0f;
+  
+  [[[SPStage mainStage].juggler delayInvocationAtTarget:self byTime:5.0f] speedUpGame];
+}
+
+- (void)updateScore
+{
+  mScoreLabel.text = [NSString stringWithFormat:@"Score: %ld", mScore];
+}
+
+- (void)updateLifeAndRocketCount
+{
+  mLifeAndRocketsLabel.text = [NSString stringWithFormat:@"Life: %d Rockets: %d", mLifes, mLoadedRockters];
 }
 
 #pragma mark EventHandlers
@@ -263,8 +332,6 @@ static float s_centerY = 0.0;
 {
   if (mIsPlaying) {
     [self checkCollisions];
-    
-    // TODO: update score and life
   }
 }
 
@@ -284,8 +351,8 @@ static float s_centerY = 0.0;
   if (touchStart)
   {
     SPPoint *touchPosition = [touchStart locationInSpace:self];
-    if (mHasRockets) [self launchRocketWithTargetAt:touchPosition.x
-                                                  y:touchPosition.y];
+    [self launchRocketWithTargetAt:touchPosition.x
+                                 y:touchPosition.y];
   }
   
 }
@@ -294,14 +361,16 @@ static float s_centerY = 0.0;
 {
   RocketSprite *rocket = (RocketSprite*)event.target;
   [mRockets removeObject:rocket];
+  mLoadedRockters++;
+  [self updateLifeAndRocketCount];
 }
 
 - (void)onRocketTarget:(SPEvent*)event
 {
   RocketSprite *rocket = (RocketSprite*)event.target;
   [mRockets removeObject:rocket];
-  
-  // TODO: load new rockets
+  mLoadedRockters++;
+  [self updateLifeAndRocketCount];
 }
 
 - (void)onUFOExplode:(SPEvent*)event
@@ -321,6 +390,7 @@ static float s_centerY = 0.0;
   [ufo explode];
 
   mLifes--;
+  [self updateLifeAndRocketCount];
   if (mLifes == 0) [self endGame];
 }
 
