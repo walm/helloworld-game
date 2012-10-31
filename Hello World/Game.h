@@ -13,6 +13,9 @@
 }
 
 + (BOOL)isTallScreen;
++ (float)centerX;
++ (float)centerY;
+
 - (id)initWithWidth:(float)width height:(float)height;
 
 

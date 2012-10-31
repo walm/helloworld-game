@@ -13,78 +13,78 @@ static NSMutableDictionary *sounds = NULL;
 
 + (void)initAtlas
 {
-    if (!atlas)
-        atlas = [[SPTextureAtlas alloc] initWithContentsOfFile:@"atlas.xml"];
+  if (!atlas)
+    atlas = [[SPTextureAtlas alloc] initWithContentsOfFile:@"atlas.xml"];
 }
 
 + (void)releaseAtlas
 {
-    atlas = nil;
+  atlas = nil;
 }
 
 + (SPTexture *)atlasTexture:(NSString *)name
 {
-    if (!atlas) [self initAtlas];
-    return [atlas textureByName:name];
+  if (!atlas) [self initAtlas];
+  return [atlas textureByName:name];
 }
 
 + (NSArray *)atlasTexturesWithPrefix:(NSString *)prefix
 {
-    if (!atlas) [self initAtlas];
-    return [atlas texturesStartingWith:prefix];
+  if (!atlas) [self initAtlas];
+  return [atlas texturesStartingWith:prefix];
 }
 
 #pragma mark Audio
 
 + (void)initSound
 {
-    if (sounds) return;
-    
-    [SPAudioEngine start];
-    sounds = [[NSMutableDictionary alloc] init];
-    
-    // enumerate all sounds
-    
-    NSString *soundDir = [[NSBundle mainBundle] resourcePath];    
-    NSDirectoryEnumerator *dirEnum = [[NSFileManager defaultManager] enumeratorAtPath:soundDir];   
-    
-    NSString *filename;
-    while (filename = [dirEnum nextObject]) 
+  if (sounds) return;
+  
+  [SPAudioEngine start];
+  sounds = [[NSMutableDictionary alloc] init];
+  
+  // enumerate all sounds
+  
+  NSString *soundDir = [[NSBundle mainBundle] resourcePath];    
+  NSDirectoryEnumerator *dirEnum = [[NSFileManager defaultManager] enumeratorAtPath:soundDir];   
+  
+  NSString *filename;
+  while (filename = [dirEnum nextObject]) 
+  {
+    if ([[filename pathExtension] isEqualToString: @"caf"])
     {
-        if ([[filename pathExtension] isEqualToString: @"caf"])
-        {
-            SPSound *sound = [[SPSound alloc] initWithContentsOfFile:filename];            
-            [sounds setObject:sound forKey:filename];
-        }
+      SPSound *sound = [[SPSound alloc] initWithContentsOfFile:filename];            
+      [sounds setObject:sound forKey:filename];
     }
+  }
 }
 
 + (void)releaseSound
 {
-    sounds = nil;
+  sounds = nil;
   
-    [SPAudioEngine stop];    
+  [SPAudioEngine stop];    
 }
 
 + (void)playSound:(NSString *)soundName
 {
-    SPSound *sound = [sounds objectForKey:soundName];
-    
-    if (sound)
-        [sound play];
-    else        
-        [[SPSound soundWithContentsOfFile:soundName] play];    
+  SPSound *sound = [sounds objectForKey:soundName];
+  
+  if (sound)
+    [sound play];
+  else        
+    [[SPSound soundWithContentsOfFile:soundName] play];    
 }
 
 + (SPSoundChannel *)soundChannel:(NSString *)soundName
 {
-    SPSound *sound = [sounds objectForKey:soundName];
-    
-    // sound was not preloaded
-    if (!sound)        
-        sound = [SPSound soundWithContentsOfFile:soundName];
-    
-    return [sound createChannel];
+  SPSound *sound = [sounds objectForKey:soundName];
+  
+  // sound was not preloaded
+  if (!sound)        
+    sound = [SPSound soundWithContentsOfFile:soundName];
+  
+  return [sound createChannel];
 }
 
 @end

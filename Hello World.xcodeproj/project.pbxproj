@@ -38,6 +38,9 @@
 		EAADF3CB16415F32006F573C /* bg-568@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3C816415F32006F573C /* bg-568@2x.png */; };
 		EAADF3CC16415F32006F573C /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3C916415F32006F573C /* bg@2x.png */; };
 		EAADF3CF16416117006F573C /* bg@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3CE16416117006F573C /* bg@2x~ipad.png */; };
+		EAADF3D316416247006F573C /* UFOSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3D216416247006F573C /* UFOSprite.m */; };
+		EAADF3DA16416C27006F573C /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3D916416C27006F573C /* BaseSprite.m */; };
+		EAADF3DD16416D64006F573C /* TitleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3DC16416D64006F573C /* TitleSprite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +97,12 @@
 		EAADF3C816415F32006F573C /* bg-568@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg-568@2x.png"; path = "media/graphics/2x/bg-568@2x.png"; sourceTree = "<group>"; };
 		EAADF3C916415F32006F573C /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg@2x.png"; path = "media/graphics/2x/bg@2x.png"; sourceTree = "<group>"; };
 		EAADF3CE16416117006F573C /* bg@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg@2x~ipad.png"; path = "media/graphics/2x/bg@2x~ipad.png"; sourceTree = "<group>"; };
+		EAADF3D116416247006F573C /* UFOSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFOSprite.h; sourceTree = "<group>"; };
+		EAADF3D216416247006F573C /* UFOSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFOSprite.m; sourceTree = "<group>"; };
+		EAADF3D816416C27006F573C /* BaseSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSprite.h; sourceTree = "<group>"; };
+		EAADF3D916416C27006F573C /* BaseSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSprite.m; sourceTree = "<group>"; };
+		EAADF3DB16416D64006F573C /* TitleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleSprite.h; sourceTree = "<group>"; };
+		EAADF3DC16416D64006F573C /* TitleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleSprite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +222,7 @@
 		EAADF39916413BA1006F573C /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				EAADF3D01641621F006F573C /* Sprites */,
 				EAADF39A16413BAC006F573C /* Game.h */,
 				EAADF39B16413BAC006F573C /* Game.m */,
 				EAADF39C16413BAC006F573C /* GameController.h */,
@@ -281,6 +291,19 @@
 				EAADF3B81641425E006F573C /* atlas@2x.xml */,
 			);
 			name = 2x;
+			sourceTree = "<group>";
+		};
+		EAADF3D01641621F006F573C /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				EAADF3D816416C27006F573C /* BaseSprite.h */,
+				EAADF3D916416C27006F573C /* BaseSprite.m */,
+				EAADF3D116416247006F573C /* UFOSprite.h */,
+				EAADF3D216416247006F573C /* UFOSprite.m */,
+				EAADF3DB16416D64006F573C /* TitleSprite.h */,
+				EAADF3DC16416D64006F573C /* TitleSprite.m */,
+			);
+			name = Sprites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,6 +448,9 @@
 				EAADF3A216413BAC006F573C /* Media.m in Sources */,
 				EAADF3A716413BB5006F573C /* SPOverlayView.m in Sources */,
 				EAADF3A816413BB5006F573C /* SPResizeEvent.m in Sources */,
+				EAADF3D316416247006F573C /* UFOSprite.m in Sources */,
+				EAADF3DA16416C27006F573C /* BaseSprite.m in Sources */,
+				EAADF3DD16416D64006F573C /* TitleSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
