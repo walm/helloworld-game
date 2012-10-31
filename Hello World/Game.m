@@ -22,6 +22,12 @@
 @synthesize gameWidth  = mGameWidth;
 @synthesize gameHeight = mGameHeight;
 
+
++ (BOOL)isTallScreen
+{
+  return [[UIScreen mainScreen] bounds].size.height == 568.0f;
+}
+
 - (id)initWithWidth:(float)width height:(float)height
 {
   if ((self = [super init]))
@@ -51,20 +57,19 @@
   [Media initSound];      // loads all your sounds    -> see Media.h/Media.m
   
   
-  // Create a background image. Since the demo must support all different kinds of orientations,
-  // we center it on the stage with the pivot point.
-  
-  SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
+  NSString *bgFileName = @"bg.png";
+  if ([Game isTallScreen]) bgFileName = @"bg-568.png";
+  SPImage *background = [[SPImage alloc] initWithContentsOfFile:bgFileName];
   background.pivotX = background.width / 2;
   background.pivotY = background.height / 2;
   background.x = mGameWidth / 2;
   background.y = mGameHeight / 2;
   [self addChild:background];
   
-  
+
   // Display the Sparrow egg
   
-  SPImage *image = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
+  SPImage *image = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"ufo_1"]];
   image.pivotX = (int)image.width / 2;
   image.pivotY = (int)image.height / 2;
   image.x = mGameWidth / 2;
@@ -82,17 +87,6 @@
   [[SPStage mainStage].juggler addObject:tween];
   
   
-  // Create a text field
-  
-  NSString *text = @"To find out how to create your own game out of this scaffold, " \
-  @"have a look at the 'First Steps' section of the Sparrow website!";
-  
-  SPTextField *textField = [[SPTextField alloc] initWithWidth:280 height:80 text:text];
-  textField.x = (mGameWidth - textField.width) / 2;
-  textField.y = image.y - 175;
-  [self addChild:textField];
-  
-  
   // The scaffold autorotates the game to all supported device orientations. 
   // Choose the orienations you want to support in the Target Settings ("Summary"-tab).
   // To update the game content accordingly, listen to the "RESIZE" event; it is dispatched
@@ -103,16 +97,6 @@
   
   [self addEventListener:@selector(onResize:) atObject:self forType:SP_EVENT_TYPE_RESIZE];
   
-  
-  // Per default, this project compiles as a universal application. To change that, enter the
-  // project info screen, and in the "Build"-tab, find the setting "Targeted device family".
-  //
-  // Now choose:  
-  //   * iPhone      -> iPhone only App
-  //   * iPad        -> iPad only App
-  //   * iPhone/iPad -> Universal App  
-  // 
-  // To support the iPad, the minimum "iOS deployment target" is "iOS 3.2".
 }
 
 - (void)onImageTouched:(SPTouchEvent *)event
