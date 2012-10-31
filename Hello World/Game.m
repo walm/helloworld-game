@@ -7,6 +7,7 @@
 #import "TitleSprite.h"
 #import "RocketSprite.h"
 #import "UFOSprite.h"
+#import "SXParticleSystem.h"
 
 // --- private interface ---------------------------------------------------------------------------
 
@@ -27,6 +28,7 @@
 - (void)startGame;
 - (void)endGame;
 - (void)addUFOWithContinued:(BOOL)continued;
+- (void)addHitAtX:(int)x;
 - (void)launchRocketWithTargetAt:(int)x y:(int)y;
 - (void)checkCollisions;
 - (BOOL)hasCollided:(SPDisplayObject*)object withObject:(SPDisplayObject*)secondObject;
@@ -170,10 +172,23 @@ static float s_centerY = 0.0;
   
   SPTween *tween = [SPTween tweenWithTarget:ufo time:15.0f];
   [tween moveToX:xPos y:mBottomLine];
+  [tween addEventListener:@selector(onUFOHit:) atObject:self
+                  forType:SP_EVENT_TYPE_TWEEN_COMPLETED];
   [[SPStage mainStage].juggler addObject:tween];
 
   if (continued)
     [[[SPStage mainStage].juggler delayInvocationAtTarget:self byTime:3.0f] addUFOWithContinued:YES];
+}
+
+- (void)addHitAtX:(int)x
+{
+  SXParticleSystem *hit = [[SXParticleSystem alloc] initWithContentsOfFile:@"earth-hit.pex"];
+  hit.y = mBottomLine;
+  hit.x = x;
+  hit.rotation = SP_D2R(180);
+  [self addChild:hit];
+  [[SPStage mainStage].juggler addObject:hit];
+  [hit start];
 }
 
 - (void)launchRocketWithTargetAt:(int)x y:(int)y
@@ -250,7 +265,6 @@ static float s_centerY = 0.0;
 
 - (void)onSceneTouch:(SPTouchEvent*)event
 {
-  // TODO: launch rocket at x y pos
   SPTouch *touchStart = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] anyObject];
   if (touchStart)
   {
@@ -278,13 +292,18 @@ static float s_centerY = 0.0;
 - (void)onUFOExplode:(SPEvent*)event
 {
   UFOSprite *ufo = (UFOSprite*)event.target;
+  [[SPStage mainStage].juggler removeObjectsWithTarget:ufo];
   [mUFOs removeObject:ufo];
 }
 
 - (void)onUFOHit:(SPEvent*)event
 {
-  UFOSprite *ufo = (UFOSprite*)event.target;
+  SPTween *tween = (SPTween*)event.target;
+  UFOSprite *ufo = (UFOSprite*)tween.target;
   [mUFOs removeObject:ufo];
+
+  [self addHitAtX:(int)ufo.x];
+  [ufo explode];
   
   // TODO: Game over or lose a life?
 }

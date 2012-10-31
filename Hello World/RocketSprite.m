@@ -105,7 +105,7 @@
 - (void)explodeDone
 {
   [mExplotions stop];
-  [[self.juggler delayInvocationAtTarget:self byTime:0.2f] removeFromParent];
+  [[self.juggler delayInvocationAtTarget:self byTime:1.0f] removeFromParent];
 }
 
 - (void)onArrivedAtTarget:(SPEvent*)event
