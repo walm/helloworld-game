@@ -42,6 +42,10 @@
 		EAADF3DA16416C27006F573C /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3D916416C27006F573C /* BaseSprite.m */; };
 		EAADF3DD16416D64006F573C /* TitleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3DC16416D64006F573C /* TitleSprite.m */; };
 		EAADF3E016417807006F573C /* RocketSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3DF16417807006F573C /* RocketSprite.m */; };
+		EAADF3ED1641B54A006F573C /* SXNSDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3EA1641B54A006F573C /* SXNSDataExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAADF3EE1641B54A006F573C /* SXParticleSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3EC1641B54A006F573C /* SXParticleSystem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAADF3F21641B5FA006F573C /* rocket-explosion.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3F01641B5FA006F573C /* rocket-explosion.pex */; };
+		EAADF3F31641B5FA006F573C /* rocket-fire.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3F11641B5FA006F573C /* rocket-fire.pex */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +110,12 @@
 		EAADF3DC16416D64006F573C /* TitleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleSprite.m; sourceTree = "<group>"; };
 		EAADF3DE16417807006F573C /* RocketSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketSprite.h; sourceTree = "<group>"; };
 		EAADF3DF16417807006F573C /* RocketSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketSprite.m; sourceTree = "<group>"; };
+		EAADF3E91641B54A006F573C /* SXNSDataExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXNSDataExtensions.h; sourceTree = "<group>"; };
+		EAADF3EA1641B54A006F573C /* SXNSDataExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXNSDataExtensions.m; sourceTree = "<group>"; };
+		EAADF3EB1641B54A006F573C /* SXParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXParticleSystem.h; sourceTree = "<group>"; };
+		EAADF3EC1641B54A006F573C /* SXParticleSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXParticleSystem.m; sourceTree = "<group>"; };
+		EAADF3F01641B5FA006F573C /* rocket-explosion.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "rocket-explosion.pex"; sourceTree = "<group>"; };
+		EAADF3F11641B5FA006F573C /* rocket-fire.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "rocket-fire.pex"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +224,7 @@
 		EAADF39816413B9B006F573C /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				EAADF3E81641B54A006F573C /* SXParticleSystem */,
 				EAADF3A316413BB5006F573C /* SPOverlayView.h */,
 				EAADF3A416413BB5006F573C /* SPOverlayView.m */,
 				EAADF3A516413BB5006F573C /* SPResizeEvent.h */,
@@ -242,6 +253,7 @@
 				EAADF3AA16413F8F006F573C /* system */,
 				EAADF3AB16413F96006F573C /* audio */,
 				EAADF3AC16413FA5006F573C /* graphics */,
+				EAADF3EF1641B5FA006F573C /* effects */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -309,6 +321,27 @@
 				EAADF3DF16417807006F573C /* RocketSprite.m */,
 			);
 			name = Sprites;
+			sourceTree = "<group>";
+		};
+		EAADF3E81641B54A006F573C /* SXParticleSystem */ = {
+			isa = PBXGroup;
+			children = (
+				EAADF3E91641B54A006F573C /* SXNSDataExtensions.h */,
+				EAADF3EA1641B54A006F573C /* SXNSDataExtensions.m */,
+				EAADF3EB1641B54A006F573C /* SXParticleSystem.h */,
+				EAADF3EC1641B54A006F573C /* SXParticleSystem.m */,
+			);
+			path = SXParticleSystem;
+			sourceTree = "<group>";
+		};
+		EAADF3EF1641B5FA006F573C /* effects */ = {
+			isa = PBXGroup;
+			children = (
+				EAADF3F01641B5FA006F573C /* rocket-explosion.pex */,
+				EAADF3F11641B5FA006F573C /* rocket-fire.pex */,
+			);
+			name = effects;
+			path = media/effects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,6 +430,8 @@
 				EAADF3CB16415F32006F573C /* bg-568@2x.png in Resources */,
 				EAADF3CC16415F32006F573C /* bg@2x.png in Resources */,
 				EAADF3CF16416117006F573C /* bg@2x~ipad.png in Resources */,
+				EAADF3F21641B5FA006F573C /* rocket-explosion.pex in Resources */,
+				EAADF3F31641B5FA006F573C /* rocket-fire.pex in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +492,8 @@
 				EAADF3DA16416C27006F573C /* BaseSprite.m in Sources */,
 				EAADF3DD16416D64006F573C /* TitleSprite.m in Sources */,
 				EAADF3E016417807006F573C /* RocketSprite.m in Sources */,
+				EAADF3ED1641B54A006F573C /* SXNSDataExtensions.m in Sources */,
+				EAADF3EE1641B54A006F573C /* SXParticleSystem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

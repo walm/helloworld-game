@@ -8,6 +8,17 @@
 
 #import "RocketSprite.h"
 
+@interface RocketSprite() {
+
+  SPImage *mImage;
+  SXParticleSystem *mExplotions;
+  SXParticleSystem *mFire;
+}
+
+- (void)explodeDone;
+
+@end
+
 @implementation RocketSprite
 
 + (RocketSprite*)rocket
@@ -32,26 +43,43 @@
 - (void)setup
 {
   NSString *rocketTextureName = [NSString stringWithFormat:@"rocket%d", self.type];
-  SPImage *image = [SPImage imageWithTexture:[Media atlasTexture:rocketTextureName]];
-  image.pivotX = (int)image.width/2;
-  image.pivotY = (int)image.height/2;
-  [self addChild:image];
+  mImage = [SPImage imageWithTexture:[Media atlasTexture:rocketTextureName]];
+  mImage.pivotX = (int)mImage.width/2;
+  mImage.pivotY = (int)mImage.height/2;
+  [self addChild:mImage];
+ 
+  mFire = [[SXParticleSystem alloc] initWithContentsOfFile:@"rocket-fire.pex"];
+  mFire.y = mImage.pivotY;
+  mFire.scaleX = mFire.scaleY = 0.6f;
+  [self addChild:mFire];
+  [self.juggler addObject:mFire];
+  [mFire start];
+  
+  mExplotions = [[SXParticleSystem alloc] initWithContentsOfFile:@"rocket-explosion.pex"];
+  [self addChild:mExplotions];
+  [self.juggler addObject:mExplotions];
+  
+  self.scaleX = self.scaleY = 0.0f;
 }
 
 - (void)setTargetForX:(int)x y:(int)y
 {
   // point rocket at target
-  self.rotation = SP_D2R(atan2(x-self.x, self.y-y) * 180 / M_PI);
-  self.scaleX = self.scaleY = 0.0;
+  float angle = atan2(x-self.x, self.y-y) * 180 / M_PI;
+  self.rotation = SP_D2R(angle);
+
+  float len = y+50;
+  float theta = atan2(y-self.y, x-self.x);
+  float endX = (len * cos(theta)) + x;
+  float endY = (len * sin(theta)) + y;
   
   SPTween *tween;
-  
   tween = [SPTween tweenWithTarget:self time:0.8f transition:SP_TRANSITION_EASE_IN];
   [tween scaleTo:1.0f];
   [self.juggler addObject:tween];
   
-  tween = [SPTween tweenWithTarget:self time:1.0f transition:SP_TRANSITION_EASE_IN];
-  [tween moveToX:x y:y];
+  tween = [SPTween tweenWithTarget:self time:1.2f transition:SP_TRANSITION_EASE_IN];
+  [tween moveToX:endX y:endY];
   [tween addEventListener:@selector(onArrivedAtTarget:) atObject:self
                   forType:SP_EVENT_TYPE_TWEEN_COMPLETED];
   [self.juggler addObject:tween];
@@ -59,8 +87,25 @@
 
 - (void)explode
 {
-  [self removeFromParent];
+  //[self removeFromParent];
+  [mFire stop];
+  [mFire removeFromParent];
+  [mImage removeFromParent];
+  [self.juggler removeObjectsWithTarget:self];
+  
+  SPTween *tween = [SPTween tweenWithTarget:self time:0.2f];
+  [tween moveToX:self.x y:self.y-50];
+  [self.juggler addObject:tween];
+  
+  [mExplotions start];
+  [[self.juggler delayInvocationAtTarget:self byTime:0.08f] explodeDone];
   [self dispatchEvent:[SPEvent eventWithType:ROCKET_EXPLODE_EVENT]];
+}
+
+- (void)explodeDone
+{
+  [mExplotions stop];
+  [[self.juggler delayInvocationAtTarget:self byTime:0.2f] removeFromParent];
 }
 
 - (void)onArrivedAtTarget:(SPEvent*)event
