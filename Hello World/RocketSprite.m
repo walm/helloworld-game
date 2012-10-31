@@ -57,6 +57,12 @@
   [self.juggler addObject:tween];
 }
 
+- (void)explode
+{
+  [self removeFromParent];
+  [self dispatchEvent:[SPEvent eventWithType:ROCKET_EXPLODE_EVENT]];
+}
+
 - (void)onArrivedAtTarget:(SPEvent*)event
 {
   [self removeFromParent];

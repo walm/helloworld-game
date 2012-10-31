@@ -34,6 +34,12 @@
   
 }
 
+- (void)explode
+{
+  [self removeFromParent];
+  [self dispatchEvent:[SPEvent eventWithType:UFO_EXPLODE_EVENT]];
+}
+
 - (void)onTouched:(SPTouchEvent *)event
 {
   NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseEnded];

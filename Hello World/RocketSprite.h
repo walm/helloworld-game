@@ -8,6 +8,7 @@
 
 #import "BaseSprite.h"
 
+#define ROCKET_EXPLODE_EVENT @"rocketExplode"
 #define ROCKET_ON_TARGET_EVENT @"rocketOnTarget"
 
 @interface RocketSprite : BaseSprite
@@ -18,5 +19,7 @@
 + (RocketSprite*)rocketWithType:(int)type;
 
 - (void)setTargetForX:(int)x y:(int)y;
+
+- (void)explode;
 
 @end
