@@ -1,0 +1,18 @@
+# xcode noise
+*.mode1v3
+*.pbxuser
+*.perspective 
+*.perspectivev3
+*.pyc 
+*~.nib/
+build/*
+src/build/*
+xcuserdata/*
+*.xcuserdatad/
+root.dir
+deploy/*
+tags
+
+# osx noise
+.DS_Store
+profile
