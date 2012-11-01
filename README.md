@@ -7,10 +7,14 @@ Save the World from all Hello'ers, fire our strongest rockets at their space shi
 
 ## Setup
 
+    ./scripts/build.sh
+
+*This will run*
+
     bundle install
     pod setup
     pod install
-    ./scripts/build.sh
+    xcodebuild ...
 
 ### Resources
 
