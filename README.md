@@ -1,7 +1,7 @@
 Hello World - The Game
 =====================
 
-![Screenshots](screenshots.jpg)
+![Screenshots](https://raw.github.com/walm/helloworld-game/master/screenshots.jpg)
 
 Save the World from all Hello'ers, fire our strongest rockets at their space ships.
 

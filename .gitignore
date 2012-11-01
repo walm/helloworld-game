@@ -13,6 +13,8 @@ root.dir
 deploy/*
 tags
 
+Pods
+
 # osx noise
 .DS_Store
 profile

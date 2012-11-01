@@ -1,1 +1,0 @@
-../../Sparrow-Framework/sparrow/src/Classes/SPTouch_Internal.h
