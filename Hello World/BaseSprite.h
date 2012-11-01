@@ -3,6 +3,7 @@
 //
 
 #import "SPSprite.h"
+#import "SXParticleSystem.h"
 
 typedef void (^ OnCompletionBlock)();
 

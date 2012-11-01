@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:801a34bc7a5bc4b47b7d1607f2782ee5$ -->
+<!-- $TexturePacker:SmartUpdate:982c235e488aa8cfd4552c655ec91dcd$ -->
 <TextureAtlas imagePath="atlas.png">
-    <SubTexture name="hello-title" x="2" y="2" width="186" height="106" frameX="-35" frameY="-22" frameWidth="255" frameHeight="157"/>
-    <SubTexture name="rocket1" x="190" y="2" width="37" height="73" frameX="-8" frameY="-3" frameWidth="54" frameHeight="77"/>
-    <SubTexture name="rocket2" x="184" y="185" width="51" height="69" frameX="-1" frameY="-6" frameWidth="54" frameHeight="77"/>
-    <SubTexture name="rocket3" x="128" y="185" width="54" height="60" frameX="0" frameY="-16" frameWidth="54" frameHeight="77"/>
-    <SubTexture name="ufo_1" x="2" y="110" width="124" height="74" frameX="-4" frameY="-5" frameWidth="133" frameHeight="83"/>
-    <SubTexture name="ufo_2" x="128" y="110" width="120" height="73" frameX="-6" frameY="-5" frameWidth="133" frameHeight="83"/>
+    <SubTexture name="earth" x="2" y="2" width="384" height="141"/>
+    <SubTexture name="hello-title" x="2" y="145" width="223" height="126" frameX="-15" frameY="-14" frameWidth="255" frameHeight="157"/>
+    <SubTexture name="rocket1" x="388" y="80" width="35" height="64" frameX="-5" frameY="-2" frameWidth="46" frameHeight="66"/>
+    <SubTexture name="rocket2" x="449" y="37" width="37" height="52" frameX="-4" frameY="-10" frameWidth="46" frameHeight="65"/>
+    <SubTexture name="rocket3" x="388" y="39" width="36" height="39" frameX="-5" frameY="-24" frameWidth="46" frameHeight="65"/>
+    <SubTexture name="ufo_1" x="388" y="2" width="59" height="35" frameX="-1" frameY="-2" frameWidth="62" frameHeight="38"/>
+    <SubTexture name="ufo_2" x="449" y="2" width="55" height="33" frameX="-3" frameY="-2" frameWidth="62" frameHeight="38"/>
 </TextureAtlas>

@@ -159,6 +159,7 @@
             <filename>rocket3.png</filename>
             <filename>ufo_1.png</filename>
             <filename>ufo_2.png</filename>
+            <filename>earth.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

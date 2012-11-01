@@ -42,6 +42,17 @@
 		EAADF3DA16416C27006F573C /* BaseSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3D916416C27006F573C /* BaseSprite.m */; };
 		EAADF3DD16416D64006F573C /* TitleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3DC16416D64006F573C /* TitleSprite.m */; };
 		EAADF3E016417807006F573C /* RocketSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3DF16417807006F573C /* RocketSprite.m */; };
+		EAADF3ED1641B54A006F573C /* SXNSDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3EA1641B54A006F573C /* SXNSDataExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAADF3EE1641B54A006F573C /* SXParticleSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3EC1641B54A006F573C /* SXParticleSystem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EAADF3F21641B5FA006F573C /* rocket-explosion.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3F01641B5FA006F573C /* rocket-explosion.pex */; };
+		EAADF3F31641B5FA006F573C /* rocket-fire.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3F11641B5FA006F573C /* rocket-fire.pex */; };
+		EAADF3F51641D4D6006F573C /* ufo-explosion.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3F41641D4D6006F573C /* ufo-explosion.pex */; };
+		EAB706EA1641DB5300882811 /* earth-hit.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAB706E91641DB5300882811 /* earth-hit.pex */; };
+		EAB706ED1641FAD100882811 /* stars.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAB706EC1641FAD100882811 /* stars.pex */; };
+		EAB706EF1642059000882811 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB706EE1642059000882811 /* icon-72.png */; };
+		EAB706F11642059700882811 /* icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB706F01642059700882811 /* icon-144.png */; };
+		EAB706F31642059E00882811 /* icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB706F21642059E00882811 /* icon-57.png */; };
+		EAB706F5164205A400882811 /* icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB706F4164205A400882811 /* icon-114.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +117,19 @@
 		EAADF3DC16416D64006F573C /* TitleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleSprite.m; sourceTree = "<group>"; };
 		EAADF3DE16417807006F573C /* RocketSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketSprite.h; sourceTree = "<group>"; };
 		EAADF3DF16417807006F573C /* RocketSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketSprite.m; sourceTree = "<group>"; };
+		EAADF3E91641B54A006F573C /* SXNSDataExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXNSDataExtensions.h; sourceTree = "<group>"; };
+		EAADF3EA1641B54A006F573C /* SXNSDataExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXNSDataExtensions.m; sourceTree = "<group>"; };
+		EAADF3EB1641B54A006F573C /* SXParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXParticleSystem.h; sourceTree = "<group>"; };
+		EAADF3EC1641B54A006F573C /* SXParticleSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXParticleSystem.m; sourceTree = "<group>"; };
+		EAADF3F01641B5FA006F573C /* rocket-explosion.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "rocket-explosion.pex"; sourceTree = "<group>"; };
+		EAADF3F11641B5FA006F573C /* rocket-fire.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "rocket-fire.pex"; sourceTree = "<group>"; };
+		EAADF3F41641D4D6006F573C /* ufo-explosion.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ufo-explosion.pex"; sourceTree = "<group>"; };
+		EAB706E91641DB5300882811 /* earth-hit.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "earth-hit.pex"; sourceTree = "<group>"; };
+		EAB706EC1641FAD100882811 /* stars.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stars.pex; sourceTree = "<group>"; };
+		EAB706EE1642059000882811 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
+		EAB706F01642059700882811 /* icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-144.png"; sourceTree = "<group>"; };
+		EAB706F21642059E00882811 /* icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-57.png"; sourceTree = "<group>"; };
+		EAB706F4164205A400882811 /* icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-114.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +238,7 @@
 		EAADF39816413B9B006F573C /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				EAADF3E81641B54A006F573C /* SXParticleSystem */,
 				EAADF3A316413BB5006F573C /* SPOverlayView.h */,
 				EAADF3A416413BB5006F573C /* SPOverlayView.m */,
 				EAADF3A516413BB5006F573C /* SPResizeEvent.h */,
@@ -242,6 +267,7 @@
 				EAADF3AA16413F8F006F573C /* system */,
 				EAADF3AB16413F96006F573C /* audio */,
 				EAADF3AC16413FA5006F573C /* graphics */,
+				EAADF3EF1641B5FA006F573C /* effects */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -249,6 +275,10 @@
 		EAADF3AA16413F8F006F573C /* system */ = {
 			isa = PBXGroup;
 			children = (
+				EAB706F4164205A400882811 /* icon-114.png */,
+				EAB706F21642059E00882811 /* icon-57.png */,
+				EAB706F01642059700882811 /* icon-144.png */,
+				EAB706EE1642059000882811 /* icon-72.png */,
 				EAADF35216413071006F573C /* Default.png */,
 				EAADF35416413071006F573C /* Default@2x.png */,
 				EAADF35616413071006F573C /* Default-568h@2x.png */,
@@ -309,6 +339,30 @@
 				EAADF3DF16417807006F573C /* RocketSprite.m */,
 			);
 			name = Sprites;
+			sourceTree = "<group>";
+		};
+		EAADF3E81641B54A006F573C /* SXParticleSystem */ = {
+			isa = PBXGroup;
+			children = (
+				EAADF3E91641B54A006F573C /* SXNSDataExtensions.h */,
+				EAADF3EA1641B54A006F573C /* SXNSDataExtensions.m */,
+				EAADF3EB1641B54A006F573C /* SXParticleSystem.h */,
+				EAADF3EC1641B54A006F573C /* SXParticleSystem.m */,
+			);
+			path = SXParticleSystem;
+			sourceTree = "<group>";
+		};
+		EAADF3EF1641B5FA006F573C /* effects */ = {
+			isa = PBXGroup;
+			children = (
+				EAB706EC1641FAD100882811 /* stars.pex */,
+				EAB706E91641DB5300882811 /* earth-hit.pex */,
+				EAADF3F41641D4D6006F573C /* ufo-explosion.pex */,
+				EAADF3F01641B5FA006F573C /* rocket-explosion.pex */,
+				EAADF3F11641B5FA006F573C /* rocket-fire.pex */,
+			);
+			name = effects;
+			path = media/effects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,6 +451,15 @@
 				EAADF3CB16415F32006F573C /* bg-568@2x.png in Resources */,
 				EAADF3CC16415F32006F573C /* bg@2x.png in Resources */,
 				EAADF3CF16416117006F573C /* bg@2x~ipad.png in Resources */,
+				EAADF3F21641B5FA006F573C /* rocket-explosion.pex in Resources */,
+				EAADF3F31641B5FA006F573C /* rocket-fire.pex in Resources */,
+				EAADF3F51641D4D6006F573C /* ufo-explosion.pex in Resources */,
+				EAB706EA1641DB5300882811 /* earth-hit.pex in Resources */,
+				EAB706ED1641FAD100882811 /* stars.pex in Resources */,
+				EAB706EF1642059000882811 /* icon-72.png in Resources */,
+				EAB706F11642059700882811 /* icon-144.png in Resources */,
+				EAB706F31642059E00882811 /* icon-57.png in Resources */,
+				EAB706F5164205A400882811 /* icon-114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +520,8 @@
 				EAADF3DA16416C27006F573C /* BaseSprite.m in Sources */,
 				EAADF3DD16416D64006F573C /* TitleSprite.m in Sources */,
 				EAADF3E016417807006F573C /* RocketSprite.m in Sources */,
+				EAADF3ED1641B54A006F573C /* SXNSDataExtensions.m in Sources */,
+				EAADF3EE1641B54A006F573C /* SXParticleSystem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

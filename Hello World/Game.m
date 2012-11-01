@@ -7,24 +7,43 @@
 #import "TitleSprite.h"
 #import "RocketSprite.h"
 #import "UFOSprite.h"
+#import "SXParticleSystem.h"
 
 // --- private interface ---------------------------------------------------------------------------
 
 @interface Game () {
   
-  TitleSprite *mTitle;
-  BOOL mHasRockets;
-  
+  BOOL mIsPlaying;
+  float mBottomLine;
+  int mLifes;
+  int mLoadedRockters;
+  long mScore;
+  float mUfoSpeed;
+  float mUfoDelay;
   NSMutableArray *mRockets;
   NSMutableArray *mUFOs;
   
+  TitleSprite *mTitle;
+  SPSprite *mPlayStage;
+  SPTextField *mScoreLabel;
+  SPTextField *mLifeAndRocketsLabel;
+  SPImage *mEarth;
+  
+  SXParticleSystem *mBgStars;
 }
 
 - (void)setup;
 - (void)showMenu;
 - (void)startGame;
 - (void)endGame;
+- (void)addUFOWithContinued:(BOOL)continued;
+- (void)addHitAtX:(int)x;
 - (void)launchRocketWithTargetAt:(int)x y:(int)y;
+- (void)checkCollisions;
+- (void)updateScore;
+- (void)updateLifeAndRocketCount;
+- (void)speedUpGame;
+- (BOOL)hasCollided:(SPDisplayObject*)object withObject:(SPDisplayObject*)secondObject;
 
 @end
 
@@ -64,6 +83,12 @@ static float s_centerY = 0.0;
     
     s_centerX = mGameWidth/2.0;
     s_centerY = mGameHeight/2.0;
+   
+    if (mGameHeight < 500) {
+      mBottomLine = mGameHeight - 50.0f;
+    } else {
+      mBottomLine = mGameHeight - 100.0f;
+    }
     
     [self setup];
     [self showMenu];
@@ -95,7 +120,44 @@ static float s_centerY = 0.0;
   background.x = mGameWidth / 2;
   background.y = mGameHeight / 2;
   [self addChild:background];
+
+  mBgStars = [[SXParticleSystem alloc] initWithContentsOfFile:@"stars.pex"];
+  mBgStars.y = [Game centerY];
+  [self addChild:mBgStars];
+
+  mEarth = [SPImage imageWithTexture:[Media atlasTexture:@"earth"]];
+  mEarth.pivotX = mEarth.width / 2;
+  mEarth.pivotY = mEarth.height / 2;
+  mEarth.x = mGameWidth / 2;
+  mEarth.y = mGameHeight + mEarth.pivotY;
+  mEarth.alpha = 0.7f;
+  [self addChild:mEarth];
   
+  mPlayStage = [SPSprite sprite];
+  [self addChild:mPlayStage];
+
+  mScoreLabel = [SPTextField textFieldWithText:@"Score: 0"];
+  mScoreLabel.visible = NO;
+  mScoreLabel.width = 180.0;
+  mScoreLabel.hAlign = SPHAlignLeft;
+  mScoreLabel.color = SP_WHITE;
+  mScoreLabel.fontSize = 15;
+  mScoreLabel.y = mGameHeight - 80.0f;
+  mScoreLabel.x = 10.0f;
+  [self addChild:mScoreLabel];
+
+  mLifeAndRocketsLabel = [SPTextField textFieldWithText:@"Life: 0 Rockets: 0"];
+  mLifeAndRocketsLabel.visible = NO;
+  mLifeAndRocketsLabel.width = 180.0;
+  mLifeAndRocketsLabel.hAlign = SPHAlignRight;
+  mLifeAndRocketsLabel.color = SP_WHITE;
+  mLifeAndRocketsLabel.fontSize = 15;
+  mLifeAndRocketsLabel.y = mScoreLabel.y;
+  mLifeAndRocketsLabel.x = mGameWidth - 195.0f;
+  [self addChild:mLifeAndRocketsLabel];
+  
+  [self addEventListener:@selector(onEnterFrame:) atObject:self
+                 forType:SP_EVENT_TYPE_ENTER_FRAME];
 }
 
 - (void)showMenu
@@ -109,39 +171,197 @@ static float s_centerY = 0.0;
     [mTitle addEventListener:@selector(onTitleTouched:) atObject:self
                      forType:SP_EVENT_TYPE_TOUCH];
   }
-  [[[SPStage mainStage].juggler delayInvocationAtTarget:mTitle byTime:2.0f] fadeIn:nil];
+  [[[SPStage mainStage].juggler delayInvocationAtTarget:mTitle byTime:1.0f] fadeIn:nil];
+  
+  [[SPStage mainStage].juggler addObject:mBgStars];
+  [mBgStars start];
 }
 
 - (void)startGame
 {
+  mIsPlaying = YES;
+  mUfoDelay = 3.0f;
+  mUfoSpeed = 10.0f;
+  mLoadedRockters = 2;
+  mLifes = 3;
+  mScore = 0;
+
+  // clear stage
+  [[SPStage mainStage].juggler removeObjectsWithTarget:mPlayStage];
+  [mPlayStage removeAllChildren];
+  mPlayStage.alpha = 1.0f;
   mUFOs = [[NSMutableArray alloc] init];
   mRockets = [[NSMutableArray alloc] init];
+
+  mScoreLabel.visible = YES;
+  mLifeAndRocketsLabel.visible = YES;
   
-  mHasRockets = YES;
- 
+  [self updateLifeAndRocketCount];
+  [self addUFOWithContinued:YES];
+
+  // move in earth
+  SPTween *tween = [SPTween tweenWithTarget:mEarth time:3.0f transition:SP_TRANSITION_EASE_OUT];
+  [tween moveToX:mEarth.x y:mGameHeight - mEarth.pivotY];
+  [tween fadeTo:1.0f];
+  [[SPStage mainStage].juggler addObject:tween];
+  
   // activate touch on scene, which trigger rockets launch
   [self addEventListener:@selector(onSceneTouch:) atObject:self
                  forType:SP_EVENT_TYPE_TOUCH];
+  
+  [[[SPStage mainStage].juggler delayInvocationAtTarget:self byTime:15.0f] speedUpGame];
 }
 
 - (void)endGame
 {
+  mIsPlaying = NO;
+  
   [self removeEventListener:@selector(onSceneTouch:) atObject:self
                     forType:SP_EVENT_TYPE_TOUCH];
+  
+  [mRockets removeAllObjects];
+  [mUFOs removeAllObjects];
+  mRockets = nil;
+  mUFOs = nil;
+ 
+  [[SPStage mainStage].juggler removeAllObjects];
+
+  SPTween *tween = [SPTween tweenWithTarget:mPlayStage time:10.0f];
+  [tween fadeTo:0.0f];
+  [[SPStage mainStage].juggler addObject:tween];
+  
   // Game over!!
   [self showMenu];
 }
 
+- (void)addUFOWithContinued:(BOOL)continued
+{
+  if (!mIsPlaying) return;
+  
+  int xPos = [SPUtils randomIntBetweenMin:20 andMax:mGameWidth-20];
+  
+  UFOSprite *ufo = [UFOSprite ufo];
+  ufo.x = xPos;
+  ufo.y = -10;
+  [ufo addEventListener:@selector(onUFOExplode:) atObject:self
+                forType:UFO_EXPLODE_EVENT];
+  [mPlayStage addChild:ufo];
+  
+  [mUFOs addObject:ufo];
+  
+  SPTween *tween = [SPTween tweenWithTarget:ufo time:mUfoSpeed];
+  [tween moveToX:xPos y:mBottomLine];
+  [tween addEventListener:@selector(onUFOHit:) atObject:self
+                  forType:SP_EVENT_TYPE_TWEEN_COMPLETED];
+  [[SPStage mainStage].juggler addObject:tween];
+
+  if (continued)
+    [[[SPStage mainStage].juggler delayInvocationAtTarget:self byTime:mUfoDelay] addUFOWithContinued:YES];
+}
+
+- (void)addHitAtX:(int)x
+{
+  SXParticleSystem *hit = [[SXParticleSystem alloc] initWithContentsOfFile:@"earth-hit.pex"];
+  hit.y = mBottomLine;
+  hit.x = x;
+  hit.rotation = SP_D2R(180);
+  [mPlayStage addChild:hit];
+  [[SPStage mainStage].juggler addObject:hit];
+  [hit start];
+}
+
 - (void)launchRocketWithTargetAt:(int)x y:(int)y
 {
-  NSLog(@"Rocket fire at x:%d y:%d", x, y);
-  
-  RocketSprite *rocket = [RocketSprite rocket];
-  rocket.x = [Game centerX];
-  rocket.y = mGameHeight - 100.0f;
+  if (mLoadedRockters <= 0) return;
+
+  int rocketType = [SPUtils randomIntBetweenMin:1 andMax:4];
+  RocketSprite *rocket = [RocketSprite rocketWithType:rocketType];
+  rocket.x = [SPUtils randomIntBetweenMin:[Game centerX]-100 andMax:[Game centerX]+100]; //[Game centerX];
+  rocket.y = mBottomLine;
   [rocket setTargetForX:x y:y];
+  [rocket addEventListener:@selector(onRocketTarget:) atObject:self
+                   forType:ROCKET_ON_TARGET_EVENT];
+  [rocket addEventListener:@selector(onRocketExplode:) atObject:self
+                   forType:ROCKET_EXPLODE_EVENT];
   [mRockets addObject:rocket];
-  [self addChild:rocket];
+  [mPlayStage addChild:rocket];
+  
+  mLoadedRockters--;
+  [self updateLifeAndRocketCount];
+}
+
+- (BOOL)hasCollided:(SPDisplayObject*)object withObject:(SPDisplayObject*)secondObject
+{
+  // check with bounding box method
+  SPRectangle *firstBounds = object.bounds;
+  SPRectangle *secondBounds = secondObject.bounds;
+  
+  // make it just a bit smaller
+  firstBounds.width -= 10.0f;
+  firstBounds.height -= 10.0f;
+  secondBounds.width -= 10.0f;
+  secondBounds.height -= 10.0f;
+  
+  return [firstBounds intersectsRectangle:secondBounds];
+}
+
+- (void)checkCollisions
+{
+  RocketSprite *rocket;
+  UFOSprite *ufo;
+  
+  NSMutableArray *rockets = [mRockets copy];
+  NSMutableArray *ufos = [mUFOs copy];
+  for (int i=0; i<[rockets count]; i++)
+  {
+    rocket = [rockets objectAtIndex:i];
+    
+    for (int u=0; u<[ufos count]; u++)
+    {
+      ufo = [ufos objectAtIndex:u];
+      
+      if ([self hasCollided:rocket withObject:ufo])
+      {
+        [ufo explode];
+        [rocket explode];
+        mScore += 100;
+        [self updateScore];
+      }
+    }
+  }
+}
+
+- (void)speedUpGame
+{
+  if (!mIsPlaying) return;
+  
+  mUfoSpeed -= 1.0f;
+  mUfoDelay -= 0.2f;
+
+  // maximum speed and delay
+  if (mUfoSpeed < 3.0f) mUfoSpeed = 3.0f;
+  if (mUfoDelay < 0.5f) mUfoDelay = 0.5f;
+
+  [[[SPStage mainStage].juggler delayInvocationAtTarget:self byTime:5.0f] speedUpGame];
+}
+
+- (void)updateScore
+{
+  mScoreLabel.text = [NSString stringWithFormat:@"Score: %ld", mScore];
+}
+
+- (void)updateLifeAndRocketCount
+{
+  mLifeAndRocketsLabel.text = [NSString stringWithFormat:@"Life: %d Rockets: %d", mLifes, mLoadedRockters];
+}
+
+#pragma mark EventHandlers
+
+- (void)onEnterFrame:(SPEvent*)event
+{
+  if (mIsPlaying) {
+    [self checkCollisions];
+  }
 }
 
 - (void)onTitleTouched:(SPTouchEvent*)event
@@ -156,15 +376,51 @@ static float s_centerY = 0.0;
 
 - (void)onSceneTouch:(SPTouchEvent*)event
 {
-  // TODO: launch rocket at x y pos
   SPTouch *touchStart = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] anyObject];
   if (touchStart)
   {
     SPPoint *touchPosition = [touchStart locationInSpace:self];
-    if (mHasRockets) [self launchRocketWithTargetAt:touchPosition.x
-                                                  y:touchPosition.y];
+    [self launchRocketWithTargetAt:touchPosition.x
+                                 y:touchPosition.y];
   }
   
+}
+
+- (void)onRocketExplode:(SPEvent*)event
+{
+  RocketSprite *rocket = (RocketSprite*)event.target;
+  [mRockets removeObject:rocket];
+  mLoadedRockters++;
+  [self updateLifeAndRocketCount];
+}
+
+- (void)onRocketTarget:(SPEvent*)event
+{
+  RocketSprite *rocket = (RocketSprite*)event.target;
+  [mRockets removeObject:rocket];
+  mLoadedRockters++;
+  [self updateLifeAndRocketCount];
+}
+
+- (void)onUFOExplode:(SPEvent*)event
+{
+  UFOSprite *ufo = (UFOSprite*)event.target;
+  [[SPStage mainStage].juggler removeObjectsWithTarget:ufo];
+  [mUFOs removeObject:ufo];
+}
+
+- (void)onUFOHit:(SPEvent*)event
+{
+  SPTween *tween = (SPTween*)event.target;
+  UFOSprite *ufo = (UFOSprite*)tween.target;
+  [mUFOs removeObject:ufo];
+
+  [self addHitAtX:(int)ufo.x];
+  [ufo explode];
+
+  mLifes--;
+  [self updateLifeAndRocketCount];
+  if (mLifes == 0) [self endGame];
 }
 
 @end
