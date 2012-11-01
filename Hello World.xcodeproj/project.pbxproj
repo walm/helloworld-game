@@ -49,6 +49,10 @@
 		EAADF3F51641D4D6006F573C /* ufo-explosion.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3F41641D4D6006F573C /* ufo-explosion.pex */; };
 		EAB706EA1641DB5300882811 /* earth-hit.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAB706E91641DB5300882811 /* earth-hit.pex */; };
 		EAB706ED1641FAD100882811 /* stars.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAB706EC1641FAD100882811 /* stars.pex */; };
+		EAB706EF1642059000882811 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB706EE1642059000882811 /* icon-72.png */; };
+		EAB706F11642059700882811 /* icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB706F01642059700882811 /* icon-144.png */; };
+		EAB706F31642059E00882811 /* icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB706F21642059E00882811 /* icon-57.png */; };
+		EAB706F5164205A400882811 /* icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB706F4164205A400882811 /* icon-114.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +126,10 @@
 		EAADF3F41641D4D6006F573C /* ufo-explosion.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ufo-explosion.pex"; sourceTree = "<group>"; };
 		EAB706E91641DB5300882811 /* earth-hit.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "earth-hit.pex"; sourceTree = "<group>"; };
 		EAB706EC1641FAD100882811 /* stars.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stars.pex; sourceTree = "<group>"; };
+		EAB706EE1642059000882811 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
+		EAB706F01642059700882811 /* icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-144.png"; sourceTree = "<group>"; };
+		EAB706F21642059E00882811 /* icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-57.png"; sourceTree = "<group>"; };
+		EAB706F4164205A400882811 /* icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-114.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +275,10 @@
 		EAADF3AA16413F8F006F573C /* system */ = {
 			isa = PBXGroup;
 			children = (
+				EAB706F4164205A400882811 /* icon-114.png */,
+				EAB706F21642059E00882811 /* icon-57.png */,
+				EAB706F01642059700882811 /* icon-144.png */,
+				EAB706EE1642059000882811 /* icon-72.png */,
 				EAADF35216413071006F573C /* Default.png */,
 				EAADF35416413071006F573C /* Default@2x.png */,
 				EAADF35616413071006F573C /* Default-568h@2x.png */,
@@ -444,6 +456,10 @@
 				EAADF3F51641D4D6006F573C /* ufo-explosion.pex in Resources */,
 				EAB706EA1641DB5300882811 /* earth-hit.pex in Resources */,
 				EAB706ED1641FAD100882811 /* stars.pex in Resources */,
+				EAB706EF1642059000882811 /* icon-72.png in Resources */,
+				EAB706F11642059700882811 /* icon-144.png in Resources */,
+				EAB706F31642059E00882811 /* icon-57.png in Resources */,
+				EAB706F5164205A400882811 /* icon-114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
