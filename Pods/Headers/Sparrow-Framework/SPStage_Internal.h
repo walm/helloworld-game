@@ -1,1 +1,0 @@
-../../Sparrow-Framework/sparrow/src/Classes/SPStage_Internal.h
