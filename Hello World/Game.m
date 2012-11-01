@@ -127,8 +127,8 @@ static float s_centerY = 0.0;
   mScoreLabel.width = 180.0;
   mScoreLabel.hAlign = SPHAlignLeft;
   mScoreLabel.color = SP_WHITE;
-  mScoreLabel.fontSize = 20;
-  mScoreLabel.y = mBottomLine + 15.0f;
+  mScoreLabel.fontSize = 15;
+  mScoreLabel.y = mGameHeight - 80.0f;
   mScoreLabel.x = 10.0f;
   [self addChild:mScoreLabel];
 
@@ -137,7 +137,7 @@ static float s_centerY = 0.0;
   mLifeAndRocketsLabel.width = 180.0;
   mLifeAndRocketsLabel.hAlign = SPHAlignRight;
   mLifeAndRocketsLabel.color = SP_WHITE;
-  mLifeAndRocketsLabel.fontSize = 20;
+  mLifeAndRocketsLabel.fontSize = 15;
   mLifeAndRocketsLabel.y = mScoreLabel.y;
   mLifeAndRocketsLabel.x = mGameWidth - 195.0f;
   [self addChild:mLifeAndRocketsLabel];
@@ -164,13 +164,15 @@ static float s_centerY = 0.0;
 {
   mIsPlaying = YES;
   mUfoDelay = 3.0f;
-  mUfoSpeed = 15.0f;
+  mUfoSpeed = 10.0f;
   mLoadedRockters = 2;
   mLifes = 3;
   mScore = 0;
 
   // clear stage
+  [[SPStage mainStage].juggler removeObjectsWithTarget:mPlayStage];
   [mPlayStage removeAllChildren];
+  mPlayStage.alpha = 1.0f;
   mUFOs = [[NSMutableArray alloc] init];
   mRockets = [[NSMutableArray alloc] init];
 
@@ -200,6 +202,10 @@ static float s_centerY = 0.0;
   mUFOs = nil;
  
   [[SPStage mainStage].juggler removeAllObjects];
+
+  SPTween *tween = [SPTween tweenWithTarget:mPlayStage time:10.0f];
+  [tween fadeTo:0.0f];
+  [[SPStage mainStage].juggler addObject:tween];
   
   // Game over!!
   [self showMenu];
@@ -214,7 +220,6 @@ static float s_centerY = 0.0;
   UFOSprite *ufo = [UFOSprite ufo];
   ufo.x = xPos;
   ufo.y = -10;
-  ufo.scaleX = ufo.scaleY = 0.5f;
   [ufo addEventListener:@selector(onUFOExplode:) atObject:self
                 forType:UFO_EXPLODE_EVENT];
   [mPlayStage addChild:ufo];
@@ -245,9 +250,10 @@ static float s_centerY = 0.0;
 - (void)launchRocketWithTargetAt:(int)x y:(int)y
 {
   if (mLoadedRockters <= 0) return;
-  
-  RocketSprite *rocket = [RocketSprite rocket];
-  rocket.x = [Game centerX];
+
+  int rocketType = [SPUtils randomIntBetweenMin:1 andMax:4];
+  RocketSprite *rocket = [RocketSprite rocketWithType:rocketType];
+  rocket.x = [SPUtils randomIntBetweenMin:[Game centerX]-100 andMax:[Game centerX]+100]; //[Game centerX];
   rocket.y = mBottomLine;
   [rocket setTargetForX:x y:y];
   [rocket addEventListener:@selector(onRocketTarget:) atObject:self
@@ -310,9 +316,9 @@ static float s_centerY = 0.0;
   mUfoDelay -= 0.2f;
 
   // maximum speed and delay
-  if (mUfoSpeed < 5.0f) mUfoSpeed = 5.0f;
-  if (mUfoDelay < 1.0f) mUfoDelay = 1.0f;
-  
+  if (mUfoSpeed < 3.0f) mUfoSpeed = 3.0f;
+  if (mUfoDelay < 0.5f) mUfoDelay = 0.5f;
+
   [[[SPStage mainStage].juggler delayInvocationAtTarget:self byTime:5.0f] speedUpGame];
 }
 
