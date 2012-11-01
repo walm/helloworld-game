@@ -10,7 +10,7 @@ Save the World from all Hello'ers, fire our strongest rockets at their space shi
     bundle install
     pod setup
     pod install
-    script/build.sh
+    ./scripts/build.sh
 
 ### Resources
 
