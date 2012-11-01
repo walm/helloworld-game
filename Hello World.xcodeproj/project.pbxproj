@@ -48,6 +48,7 @@
 		EAADF3F31641B5FA006F573C /* rocket-fire.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3F11641B5FA006F573C /* rocket-fire.pex */; };
 		EAADF3F51641D4D6006F573C /* ufo-explosion.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3F41641D4D6006F573C /* ufo-explosion.pex */; };
 		EAB706EA1641DB5300882811 /* earth-hit.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAB706E91641DB5300882811 /* earth-hit.pex */; };
+		EAB706ED1641FAD100882811 /* stars.pex in Resources */ = {isa = PBXBuildFile; fileRef = EAB706EC1641FAD100882811 /* stars.pex */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		EAADF3F11641B5FA006F573C /* rocket-fire.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "rocket-fire.pex"; sourceTree = "<group>"; };
 		EAADF3F41641D4D6006F573C /* ufo-explosion.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ufo-explosion.pex"; sourceTree = "<group>"; };
 		EAB706E91641DB5300882811 /* earth-hit.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "earth-hit.pex"; sourceTree = "<group>"; };
+		EAB706EC1641FAD100882811 /* stars.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stars.pex; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +343,7 @@
 		EAADF3EF1641B5FA006F573C /* effects */ = {
 			isa = PBXGroup;
 			children = (
+				EAB706EC1641FAD100882811 /* stars.pex */,
 				EAB706E91641DB5300882811 /* earth-hit.pex */,
 				EAADF3F41641D4D6006F573C /* ufo-explosion.pex */,
 				EAADF3F01641B5FA006F573C /* rocket-explosion.pex */,
@@ -440,6 +443,7 @@
 				EAADF3F31641B5FA006F573C /* rocket-fire.pex in Resources */,
 				EAADF3F51641D4D6006F573C /* ufo-explosion.pex in Resources */,
 				EAB706EA1641DB5300882811 /* earth-hit.pex in Resources */,
+				EAB706ED1641FAD100882811 /* stars.pex in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

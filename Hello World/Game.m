@@ -27,7 +27,9 @@
   SPSprite *mPlayStage;
   SPTextField *mScoreLabel;
   SPTextField *mLifeAndRocketsLabel;
-  SPImage *mLifeImage;
+  SPImage *mEarth;
+  
+  SXParticleSystem *mBgStars;
 }
 
 - (void)setup;
@@ -119,6 +121,18 @@ static float s_centerY = 0.0;
   background.y = mGameHeight / 2;
   [self addChild:background];
 
+  mBgStars = [[SXParticleSystem alloc] initWithContentsOfFile:@"stars.pex"];
+  mBgStars.y = [Game centerY];
+  [self addChild:mBgStars];
+
+  mEarth = [SPImage imageWithTexture:[Media atlasTexture:@"earth"]];
+  mEarth.pivotX = mEarth.width / 2;
+  mEarth.pivotY = mEarth.height / 2;
+  mEarth.x = mGameWidth / 2;
+  mEarth.y = mGameHeight + mEarth.pivotY;
+  mEarth.alpha = 0.7f;
+  [self addChild:mEarth];
+  
   mPlayStage = [SPSprite sprite];
   [self addChild:mPlayStage];
 
@@ -158,6 +172,9 @@ static float s_centerY = 0.0;
                      forType:SP_EVENT_TYPE_TOUCH];
   }
   [[[SPStage mainStage].juggler delayInvocationAtTarget:mTitle byTime:1.0f] fadeIn:nil];
+  
+  [[SPStage mainStage].juggler addObject:mBgStars];
+  [mBgStars start];
 }
 
 - (void)startGame
@@ -181,6 +198,12 @@ static float s_centerY = 0.0;
   
   [self updateLifeAndRocketCount];
   [self addUFOWithContinued:YES];
+
+  // move in earth
+  SPTween *tween = [SPTween tweenWithTarget:mEarth time:3.0f transition:SP_TRANSITION_EASE_OUT];
+  [tween moveToX:mEarth.x y:mGameHeight - mEarth.pivotY];
+  [tween fadeTo:1.0f];
+  [[SPStage mainStage].juggler addObject:tween];
   
   // activate touch on scene, which trigger rockets launch
   [self addEventListener:@selector(onSceneTouch:) atObject:self
