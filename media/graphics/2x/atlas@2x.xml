@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:982c235e488aa8cfd4552c655ec91dcd$ -->
+<TextureAtlas imagePath="atlas@2x.png">
+    <SubTexture name="earth" x="4" y="4" width="768" height="282"/>
+    <SubTexture name="hello-title" x="4" y="290" width="446" height="252" frameX="-30" frameY="-28" frameWidth="510" frameHeight="314"/>
+    <SubTexture name="rocket1" x="776" y="160" width="70" height="128" frameX="-10" frameY="-4" frameWidth="92" frameHeight="132"/>
+    <SubTexture name="rocket2" x="898" y="74" width="74" height="104" frameX="-8" frameY="-20" frameWidth="92" frameHeight="130"/>
+    <SubTexture name="rocket3" x="776" y="78" width="72" height="78" frameX="-10" frameY="-48" frameWidth="92" frameHeight="130"/>
+    <SubTexture name="ufo_1" x="776" y="4" width="118" height="70" frameX="-2" frameY="-4" frameWidth="124" frameHeight="76"/>
+    <SubTexture name="ufo_2" x="898" y="4" width="110" height="66" frameX="-6" frameY="-4" frameWidth="124" frameHeight="76"/>
+</TextureAtlas>
