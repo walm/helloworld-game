@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		17021EA4AA3544F1A130D83D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1ED920A6F84AFEA31D608F /* libPods.a */; };
+		EA701FA21647C99E005DA3E3 /* boom.caf in Resources */ = {isa = PBXBuildFile; fileRef = EA701F9F1647C99E005DA3E3 /* boom.caf */; };
+		EA701FA31647C99E005DA3E3 /* hello.caf in Resources */ = {isa = PBXBuildFile; fileRef = EA701FA01647C99E005DA3E3 /* hello.caf */; };
+		EA701FA41647C99E005DA3E3 /* rocket.caf in Resources */ = {isa = PBXBuildFile; fileRef = EA701FA11647C99E005DA3E3 /* rocket.caf */; };
 		EAADF34116413071006F573C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAADF34016413071006F573C /* UIKit.framework */; };
 		EAADF34316413071006F573C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAADF34216413071006F573C /* Foundation.framework */; };
 		EAADF34516413071006F573C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAADF34416413071006F573C /* CoreGraphics.framework */; };
@@ -28,7 +31,6 @@
 		EAADF3A216413BAC006F573C /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF39F16413BAC006F573C /* Media.m */; };
 		EAADF3A716413BB5006F573C /* SPOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3A416413BB5006F573C /* SPOverlayView.m */; };
 		EAADF3A816413BB5006F573C /* SPResizeEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = EAADF3A616413BB5006F573C /* SPResizeEvent.m */; };
-		EAADF3B016414242006F573C /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3AF16414242006F573C /* sound.caf */; };
 		EAADF3B416414250006F573C /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3B116414250006F573C /* atlas.png */; };
 		EAADF3B516414250006F573C /* atlas.xml in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3B216414250006F573C /* atlas.xml */; };
 		EAADF3BA1641425E006F573C /* atlas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAADF3B71641425E006F573C /* atlas@2x.png */; };
@@ -68,6 +70,9 @@
 /* Begin PBXFileReference section */
 		3C1ED920A6F84AFEA31D608F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BDF0AF5446433389B9F1F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		EA701F9F1647C99E005DA3E3 /* boom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = boom.caf; path = media/audio/boom.caf; sourceTree = "<group>"; };
+		EA701FA01647C99E005DA3E3 /* hello.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = hello.caf; path = media/audio/hello.caf; sourceTree = "<group>"; };
+		EA701FA11647C99E005DA3E3 /* rocket.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = rocket.caf; path = media/audio/rocket.caf; sourceTree = "<group>"; };
 		EAADF33C16413071006F573C /* Hello World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hello World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAADF34016413071006F573C /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EAADF34216413071006F573C /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -99,7 +104,6 @@
 		EAADF3A416413BB5006F573C /* SPOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPOverlayView.m; sourceTree = "<group>"; };
 		EAADF3A516413BB5006F573C /* SPResizeEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPResizeEvent.h; sourceTree = "<group>"; };
 		EAADF3A616413BB5006F573C /* SPResizeEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPResizeEvent.m; sourceTree = "<group>"; };
-		EAADF3AF16414242006F573C /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound.caf; path = media/audio/sound.caf; sourceTree = "<group>"; };
 		EAADF3B116414250006F573C /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = atlas.png; path = media/graphics/1x/atlas.png; sourceTree = "<group>"; };
 		EAADF3B216414250006F573C /* atlas.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = atlas.xml; path = media/graphics/1x/atlas.xml; sourceTree = "<group>"; };
 		EAADF3B71641425E006F573C /* atlas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "atlas@2x.png"; path = "media/graphics/2x/atlas@2x.png"; sourceTree = "<group>"; };
@@ -289,7 +293,9 @@
 		EAADF3AB16413F96006F573C /* audio */ = {
 			isa = PBXGroup;
 			children = (
-				EAADF3AF16414242006F573C /* sound.caf */,
+				EA701F9F1647C99E005DA3E3 /* boom.caf */,
+				EA701FA01647C99E005DA3E3 /* hello.caf */,
+				EA701FA11647C99E005DA3E3 /* rocket.caf */,
 			);
 			name = audio;
 			sourceTree = "<group>";
@@ -441,7 +447,6 @@
 				EAADF35316413071006F573C /* Default.png in Resources */,
 				EAADF35516413071006F573C /* Default@2x.png in Resources */,
 				EAADF35716413071006F573C /* Default-568h@2x.png in Resources */,
-				EAADF3B016414242006F573C /* sound.caf in Resources */,
 				EAADF3B416414250006F573C /* atlas.png in Resources */,
 				EAADF3B516414250006F573C /* atlas.xml in Resources */,
 				EAADF3BA1641425E006F573C /* atlas@2x.png in Resources */,
@@ -460,6 +465,9 @@
 				EAB706F11642059700882811 /* icon-144.png in Resources */,
 				EAB706F31642059E00882811 /* icon-57.png in Resources */,
 				EAB706F5164205A400882811 /* icon-114.png in Resources */,
+				EA701FA21647C99E005DA3E3 /* boom.caf in Resources */,
+				EA701FA31647C99E005DA3E3 /* hello.caf in Resources */,
+				EA701FA41647C99E005DA3E3 /* rocket.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

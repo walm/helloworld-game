@@ -3,7 +3,7 @@ Hello World - The Game
 
 ![Screenshots](https://raw.github.com/walm/helloworld-game/master/screenshots.jpg)
 
-Save the World from all Hello'ers, fire our strongest rockets at their space ships.
+Save the World from all Hello'ers, fire rockets at their space ships.
 
 ## Setup
 
@@ -21,9 +21,12 @@ Save the World from all Hello'ers, fire our strongest rockets at their space shi
  * [Earth image](http://jootix.com/wallpaper/1189)
  * [Rocket images](http://graphicriver.net/item/rocket-ships/2698901)
  * [UFO image](http://graphicriver.net/item/flying-saucer-photoshop-psd/2291619?sso)
+ * [Hello sound](http://www.freesound.org/people/mw_1984/sounds/37807/)
+ * [Explotion sound](http://www.freesound.org/people/nthompson/sounds/47252/)
+ * [Rocket sound](http://www.freesound.org/people/NoiseCollector/sounds/6722/)
 
 ### Developer
 
 [walm](https://github.com/walm) - Andreas Wålm
 
-*Build with [Sparrow-Framework](https://github.com/PrimaryFeather/Sparrow-Framework)*
+*Build using ARC, CocoaPods, Universal, [Sparrow-Framework 1.4](https://github.com/PrimaryFeather/Sparrow-Framework)*

@@ -13,6 +13,7 @@
   SPImage *mImage;
   SXParticleSystem *mExplotions;
   SXParticleSystem *mFire;
+  SPSoundChannel *mRocketSound;
 }
 
 - (void)explodeDone;
@@ -60,6 +61,9 @@
   [self.juggler addObject:mExplotions];
   
   self.scaleX = self.scaleY = 0.0f;
+  
+  mRocketSound = [Media soundChannel:@"rocket.caf"];
+  [mRocketSound play];
 }
 
 - (void)setTargetForX:(int)x y:(int)y
@@ -100,6 +104,10 @@
   [mExplotions start];
   [[self.juggler delayInvocationAtTarget:self byTime:0.08f] explodeDone];
   [self dispatchEvent:[SPEvent eventWithType:ROCKET_EXPLODE_EVENT]];
+
+  [mRocketSound stop];
+  mRocketSound = nil;
+  [Media playSound:@"boom.caf"];
 }
 
 - (void)explodeDone

@@ -10,6 +10,8 @@
   SPMovieClip *mUfo;
 }
 
+- (void)sayHello;
+
 @end
 
 @implementation UFOSprite
@@ -28,9 +30,6 @@
   [self.juggler addObject:mUfo];
   [self addChild:mUfo];
   
-  // play a sound when the image is touched
-  [mUfo addEventListener:@selector(onTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-  
   // and animate it a little
   SPTween *tween = [SPTween tweenWithTarget:mUfo time:1.5 transition:SP_TRANSITION_EASE_IN_OUT];
   [tween animateProperty:@"x" targetValue:mUfo.x - 10];
@@ -42,6 +41,10 @@
   mExplotions = [[SXParticleSystem alloc] initWithContentsOfFile:@"ufo-explosion.pex"];
   [self addChild:mExplotions];
   [self.juggler addObject:mExplotions];
+  
+  // Say hello within 2s
+  float delay = [SPUtils randomFloat] * 1.0;
+  [[self.juggler delayInvocationAtTarget:self byTime:delay] sayHello];
 }
 
 - (void)explode
@@ -67,13 +70,9 @@
   [[self.juggler delayInvocationAtTarget:self byTime:1.0f] removeFromParent];
 }
 
-- (void)onTouched:(SPTouchEvent *)event
+- (void)sayHello
 {
-  NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseEnded];
-  if ([touches anyObject])
-  {
-    [Media playSound:@"sound.caf"];
-  }
+  [Media playSound:@"hello.caf"];
 }
 
 @end
