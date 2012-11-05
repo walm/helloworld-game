@@ -1,0 +1,8 @@
+# Push notification to trigger Jenkins build
+#
+# Add this file to .git/hooks/
+# and change <git-repo-url>
+# on every git push, this will trigger a build in Jenkins
+#
+curl http://localhost:8080/git/notifyCommit?url=<git-repo-url>
+
