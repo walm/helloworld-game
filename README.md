@@ -5,17 +5,6 @@ Hello World - The Game
 
 Save the World from all Hello'ers, fire rockets at their space ships.
 
-## Setup
-
-    ./scripts/build.sh
-
-*This will run*
-
-    bundle install
-    pod setup
-    pod install
-    xcodebuild ...
-
 ### Resources
 
  * [Earth image](http://jootix.com/wallpaper/1189)
@@ -29,4 +18,6 @@ Save the World from all Hello'ers, fire rockets at their space ships.
 
 [walm](https://github.com/walm) - Andreas Wålm
 
-*Build using ARC, CocoaPods, Universal, [Sparrow-Framework 1.4](https://github.com/PrimaryFeather/Sparrow-Framework)*
+[jcaudill](https://github.com/jcaudill) - Joseph Caudill - Migrated to Sparrow 2.0
+
+*Build using [Sparrow-Framework 2.0](https://github.com/Gamua/Sparrow-Framework)*
