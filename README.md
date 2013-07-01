@@ -28,5 +28,6 @@ Save the World from all Hello'ers, fire rockets at their space ships.
 ### Developer
 
 [walm](https://github.com/walm) - Andreas Wålm
+(https://github.com/jcaudill) - Joseph Caudill - Migrated to Sparrow 2.0
 
-*Build using ARC, CocoaPods, Universal, [Sparrow-Framework 1.4](https://github.com/PrimaryFeather/Sparrow-Framework)*
+*Build using [Sparrow-Framework 2.0](https://github.com/Gamua/Sparrow-Framework)*
