@@ -68,8 +68,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B14F9ABAAB255E74D3428F3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3C1ED920A6F84AFEA31D608F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0BDF0AF5446433389B9F1F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		3D47B0AF46102FBB534910DF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA701F9F1647C99E005DA3E3 /* boom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = boom.caf; path = media/audio/boom.caf; sourceTree = "<group>"; };
 		EA701FA01647C99E005DA3E3 /* hello.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = hello.caf; path = media/audio/hello.caf; sourceTree = "<group>"; };
 		EA701FA11647C99E005DA3E3 /* rocket.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = rocket.caf; path = media/audio/rocket.caf; sourceTree = "<group>"; };
@@ -161,6 +162,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E2B2FDFFBA5CF6A2C9607D7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3D47B0AF46102FBB534910DF /* Pods.debug.xcconfig */,
+				0B14F9ABAAB255E74D3428F3 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EAADF33116413071006F573C = {
 			isa = PBXGroup;
 			children = (
@@ -169,7 +179,7 @@
 				EAADF36416413071006F573C /* Hello WorldTests */,
 				EAADF33F16413071006F573C /* Frameworks */,
 				EAADF33D16413071006F573C /* Products */,
-				D0BDF0AF5446433389B9F1F9 /* Pods.xcconfig */,
+				5E2B2FDFFBA5CF6A2C9607D7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -409,7 +419,7 @@
 			name = "Hello WorldTests";
 			productName = "Hello WorldTests";
 			productReference = EAADF35D16413071006F573C /* Hello WorldTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -494,7 +504,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 		};
 		EAADF35B16413071006F573C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -625,7 +635,7 @@
 		};
 		EAADF37016413071006F573C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0BDF0AF5446433389B9F1F9 /* Pods.xcconfig */;
+			baseConfigurationReference = 3D47B0AF46102FBB534910DF /* Pods.debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hello World/Hello World-Prefix.pch";
@@ -638,7 +648,7 @@
 		};
 		EAADF37116413071006F573C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0BDF0AF5446433389B9F1F9 /* Pods.xcconfig */;
+			baseConfigurationReference = 0B14F9ABAAB255E74D3428F3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hello World/Hello World-Prefix.pch";
