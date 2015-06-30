@@ -5,6 +5,6 @@ DEPENDENCIES:
   - Sparrow-Framework
 
 SPEC CHECKSUMS:
-  Sparrow-Framework: 4db9face42f2c1f62d27b156bfdefa126d149b53
+  Sparrow-Framework: 8c239edf56de1bfbfcc674713786699356430fa2
 
-COCOAPODS: 0.24.0
+COCOAPODS: 0.37.2

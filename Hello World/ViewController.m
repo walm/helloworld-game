@@ -22,6 +22,7 @@
                name:UIApplicationWillResignActiveNotification object:nil];
   }
   return self;
+    asdfasfasdfsadfsadfdsafadsfsafsaf
 }
 
 - (id)init
